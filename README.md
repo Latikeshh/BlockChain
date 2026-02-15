@@ -1,4 +1,4 @@
-# 🎓 Student Profile Blockchain System
+# 🎓 Blockchain For Student DataBase System
 
 ## 📌 Project Description
 This project stores student profile data in blockchain block format.
