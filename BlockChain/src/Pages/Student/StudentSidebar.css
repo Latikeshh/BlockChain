@@ -1,0 +1,46 @@
+.student-sidebar {
+  width: 240px;
+  height: 100vh;
+  background: #111827;
+  color: white;
+  padding: 25px;
+  position: fixed;
+}
+
+.logo {
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.welcome {
+  margin-bottom: 30px;
+  color: #9ca3af;
+}
+
+.student-sidebar nav {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.student-sidebar a {
+  text-decoration: none;
+  color: white;
+  padding: 10px;
+  border-radius: 6px;
+  transition: 0.3s;
+}
+
+.student-sidebar a:hover {
+  background: #374151;
+}
+
+.logout-btn {
+  margin-top: 40px;
+  width: 100%;
+  background: #ef4444;
+  border: none;
+  padding: 10px;
+  color: white;
+  border-radius: 6px;
+}

@@ -1,0 +1,85 @@
+.verified-container {
+  padding: 40px;
+  background: #f5f7fb;
+  min-height: 100vh;
+}
+
+/* HEADER */
+.verified-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.verified-header h2 {
+  font-weight: 700;
+  color: #1f2937;
+}
+
+.verified-header p {
+  color: #6b7280;
+  margin: 0;
+}
+
+/* SEARCH */
+.search-input {
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  width: 260px;
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: #4f46e5;
+}
+
+/* TABLE CARD */
+.verified-table-card {
+  background: white;
+  border-radius: 14px;
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  max-height: 500px;
+  overflow-y: auto;
+}
+
+/* TABLE */
+.verified-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.verified-table th {
+  background: #10b981;
+  color: white;
+  padding: 15px;
+  text-align: center;
+}
+
+.verified-table td {
+  padding: 14px;
+  text-align: center;
+  border-bottom: 1px solid #eee;
+}
+
+.verified-table tr:hover {
+  background: #f9fafb;
+}
+
+/* VERIFIED BADGE */
+.badge-verified {
+  background: #10b981;
+  color: white;
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.empty {
+  padding: 30px;
+  color: #9ca3af;
+  font-weight: 600;
+}

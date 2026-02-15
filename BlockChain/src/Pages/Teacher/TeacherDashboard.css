@@ -1,0 +1,54 @@
+.teacher-dashboard {
+  padding: 40px;
+  background: #f6f5f7;
+  min-height: 100vh;
+}
+
+.teacher-dashboard h2 {
+  margin-bottom: 20px;
+  color: #1e40af;
+}
+
+.stats-card {
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 12px;
+  width: 250px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  margin-bottom: 30px;
+}
+
+.stats-card p {
+  font-size: 32px;
+  font-weight: bold;
+  color: #2563eb;
+}
+
+.add-student-card {
+  background: #ffffff;
+  padding: 25px;
+  border-radius: 12px;
+  width: 400px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+.add-student-card form {
+  display: flex;
+  flex-direction: column;
+}
+
+.add-student-card input {
+  margin-bottom: 12px;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.add-student-card button {
+  background: #2563eb;
+  color: #fff;
+  border: none;
+  padding: 12px;
+  border-radius: 6px;
+  cursor: pointer;
+}
