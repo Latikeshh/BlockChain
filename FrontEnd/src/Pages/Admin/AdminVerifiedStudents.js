@@ -31,15 +31,15 @@ export default function AdminVerifiedStudents() {
   /* FILTERED LIST */
   const filtered = students.filter(
     (s) =>
-      s.name.toLowerCase().includes(search.toLowerCase()) ||
-      s.enroll.toLowerCase().includes(search.toLowerCase())
+      s.name?.toLowerCase().includes(search.toLowerCase()) ||
+      s.enroll?.toLowerCase().includes(search.toLowerCase())
   );
 
   return (
     <div className="admin-verified-container">
       {/* HEADER */}
       <div className="admin-verified-header">
-        <div>
+        <div className="header-content">
           <h2>Verified Students</h2>
           <p>List of all approved students</p>
         </div>
@@ -53,39 +53,45 @@ export default function AdminVerifiedStudents() {
       </div>
 
       {/* TABLE */}
-      <div className="admin-verified-table-card">
-        <table className="admin-verified-table">
-          <thead>
-            <tr>
-              <th>Sr.No</th>
-              <th>Student Name</th>
-              <th>Enrollment</th>
-              <th>Status</th>
-            </tr>
-          </thead>
-
-          <tbody>
-            {filtered.length === 0 ? (
+      {loading ? (
+        <div className="admin-loading">
+          <div className="loading-spinner"></div>
+        </div>
+      ) : (
+        <div className="admin-verified-table-card">
+          <table className="admin-verified-table">
+            <thead>
               <tr>
-                <td colSpan="4" className="admin-empty">
-                  No Verified Students Found
-                </td>
+                <th>Sr.No</th>
+                <th>Student Name</th>
+                <th>Enrollment</th>
+                <th>Status</th>
               </tr>
-            ) : (
-              filtered.map((s, i) => (
-                <tr key={s._id}>
-                  <td>{i + 1}</td>
-                  <td>{s.name}</td>
-                  <td>{s.enroll}</td>
-                  <td>
-                    <span className="admin-badge-verified">Verified</span>
+            </thead>
+
+            <tbody>
+              {filtered.length === 0 ? (
+                <tr>
+                  <td colSpan="4" className="admin-empty">
+                    No Verified Students Found
                   </td>
                 </tr>
-              ))
-            )}
-          </tbody>
-        </table>
-      </div>
+              ) : (
+                filtered.map((s, i) => (
+                  <tr key={s._id}>
+                    <td>{i + 1}</td>
+                    <td>{s.name}</td>
+                    <td>{s.enroll}</td>
+                    <td>
+                      <span className="admin-badge-verified">Verified</span>
+                    </td>
+                  </tr>
+                ))
+              )}
+            </tbody>
+          </table>
+        </div>
+      )}
     </div>
   );
 }

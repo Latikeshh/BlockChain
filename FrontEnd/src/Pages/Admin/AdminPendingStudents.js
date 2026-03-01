@@ -42,7 +42,7 @@ export default function AdminPendingStudents() {
   return (
     <div className="admin-pending-container">
       <div className="admin-pending-header">
-        <div>
+        <div className="header-content">
           <h2>Pending Students</h2>
           <p>Students awaiting verification</p>
         </div>
@@ -56,7 +56,9 @@ export default function AdminPendingStudents() {
       </div>
 
       {loading ? (
-        <div className="admin-loading">Loading pending students...</div>
+        <div className="admin-loading">
+          <div className="loading-spinner"></div>
+        </div>
       ) : (
         <>
           <div className="admin-pending-table-card">

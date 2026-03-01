@@ -1,118 +1,247 @@
+/* Import CSS Variables */
+@import url('../../Variables.css');
+
+/* ================= MAIN LAYOUT ================= */
 .admin-all-container {
-  padding: 20px;
-  width: 100%;
+  padding: 30px;
+  background: linear-gradient(135deg, #e0e7ff 0%, #c7d2fe 100%);
+  min-height: 100vh;
 }
 
+/* ================= HEADER SECTION ================= */
 .admin-all-header {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 20px;
+  padding: 30px 35px;
+  margin-bottom: 30px;
+  color: white;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 10px 40px rgba(102, 126, 234, 0.3);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 24px;
   flex-wrap: wrap;
-  gap: 16px;
+  gap: 20px;
+}
+
+.admin-all-header::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -10%;
+  width: 280px;
+  height: 280px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+}
+
+.admin-all-header::after {
+  content: '';
+  position: absolute;
+  bottom: -30%;
+  left: -5%;
+  width: 200px;
+  height: 200px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 50%;
+}
+
+.header-content {
+  position: relative;
+  z-index: 1;
 }
 
 .admin-all-header h2 {
-  margin: 0;
-  font-size: 1.5rem;
-  color: #333;
+  margin: 0 0 8px 0;
+  font-size: 28px;
+  font-weight: 800;
+  color: white;
 }
 
 .admin-all-header p {
-  margin: 4px 0 0;
-  color: #666;
-  font-size: 0.9rem;
+  margin: 0;
+  font-size: 15px;
+  opacity: 0.95;
 }
 
+/* ================= SEARCH INPUT ================= */
 .admin-search-input {
-  padding: 10px 16px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  width: 280px;
+  padding: 14px 20px;
+  border: none;
+  border-radius: 12px;
+  width: 300px;
   font-size: 0.95rem;
-  transition: border-color 0.2s, box-shadow 0.2s;
+  background: rgba(255, 255, 255, 0.95);
+  color: #333;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 1;
 }
 
 .admin-search-input:focus {
   outline: none;
-  border-color: #4a90e2;
-  box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.1);
+  background: white;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15), 0 0 0 3px rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
 }
 
+.admin-search-input::placeholder {
+  color: #999;
+}
+
+/* ================= TABLE CARD ================= */
 .admin-all-table-card {
-  background: #fff;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
   overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.5);
 }
 
+/* ================= TABLE STYLES ================= */
 .admin-all-table {
   width: 100%;
   border-collapse: collapse;
 }
 
 .admin-all-table thead {
-  background: #f8f9fa;
+  background: linear-gradient(135deg, #f0f2ff 0%, #e8eaf6 100%);
 }
 
 .admin-all-table th {
-  padding: 14px 16px;
+  padding: 18px 20px;
   text-align: left;
-  font-weight: 600;
-  color: #555;
+  font-weight: 700;
+  color: #4a5568;
   font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-bottom: 2px solid #e2e8f0;
+}
+
+.admin-all-table td {
+  padding: 16px 20px;
+  border-bottom: 1px solid #f0f0f0;
+  color: #2d3748;
+  font-size: 0.95rem;
+}
+
+.admin-all-table tbody tr {
+  transition: all 0.3s ease;
+}
+
+.admin-all-table tbody tr:hover {
+  background: linear-gradient(135deg, #f8f9ff 0%, #f0f2ff 100%);
+  transform: scale(1.01);
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.1);
+}
+
+.admin-all-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* ================= BADGES ================= */
+.admin-badge-verified {
+  display: inline-block;
+  padding: 6px 16px;
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: white;
+  border-radius: 25px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
 
-.admin-all-table td {
-  padding: 14px 16px;
-  border-top: 1px solid #eee;
-  color: #333;
-}
-
-.admin-all-table tbody tr:hover {
-  background: #fafafa;
-}
-
-.admin-badge-verified {
-  display: inline-block;
-  padding: 4px 12px;
-  background: #d4edda;
-  color: #155724;
-  border-radius: 20px;
-  font-size: 0.8rem;
-  font-weight: 500;
-}
-
 .admin-badge-pending {
   display: inline-block;
-  padding: 4px 12px;
-  background: #fff3cd;
-  color: #856404;
-  border-radius: 20px;
+  padding: 6px 16px;
+  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+  color: white;
+  border-radius: 25px;
   font-size: 0.8rem;
-  font-weight: 500;
+  font-weight: 600;
+  box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
+/* ================= EMPTY STATE ================= */
 .admin-empty {
   text-align: center;
   color: #999;
-  padding: 40px 16px !important;
+  padding: 50px 20px !important;
+  font-size: 1.1rem;
+  background: #f9fafb;
 }
 
-@media (max-width: 768px) {
+.admin-empty::before {
+  content: '📋';
+  display: block;
+  font-size: 3rem;
+  margin-bottom: 15px;
+  opacity: 0.5;
+}
+
+/* ================= LOADING STATE ================= */
+.admin-loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 300px;
+}
+
+.loading-spinner {
+  width: 50px;
+  height: 50px;
+  border: 4px solid #e5e7eb;
+  border-top-color: #667eea;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 1024px) {
   .admin-all-header {
     flex-direction: column;
     align-items: flex-start;
   }
-
+  
   .admin-search-input {
     width: 100%;
   }
+}
 
+@media (max-width: 768px) {
+  .admin-all-container {
+    padding: 20px;
+  }
+  
+  .admin-all-header {
+    padding: 25px;
+  }
+  
+  .admin-all-header h2 {
+    font-size: 24px;
+  }
+  
   .admin-all-table {
     display: block;
     overflow-x: auto;
+  }
+  
+  .admin-all-table th,
+  .admin-all-table td {
+    padding: 12px 15px;
+    font-size: 0.85rem;
   }
 }

@@ -41,7 +41,7 @@ export default function AdminAllStudents() {
     <div className="admin-all-container">
       {/* HEADER */}
       <div className="admin-all-header">
-        <div>
+        <div className="header-content">
           <h2>All Students</h2>
           <p>Complete list of all registered students</p>
         </div>
@@ -55,43 +55,49 @@ export default function AdminAllStudents() {
       </div>
 
       {/* TABLE */}
-      <div className="admin-all-table-card">
-        <table className="admin-all-table">
-          <thead>
-            <tr>
-              <th>Sr.No</th>
-              <th>Student Name</th>
-              <th>Enrollment</th>
-              <th>Status</th>
-            </tr>
-          </thead>
-
-          <tbody>
-            {filtered.length === 0 ? (
+      {loading ? (
+        <div className="admin-loading">
+          <div className="loading-spinner"></div>
+        </div>
+      ) : (
+        <div className="admin-all-table-card">
+          <table className="admin-all-table">
+            <thead>
               <tr>
-                <td colSpan="4" className="admin-empty">
-                  No Students Found
-                </td>
+                <th>Sr.No</th>
+                <th>Student Name</th>
+                <th>Enrollment</th>
+                <th>Status</th>
               </tr>
-            ) : (
-              filtered.map((s, i) => (
-                <tr key={s._id}>
-                  <td>{i + 1}</td>
-                  <td>{s.name}</td>
-                  <td>{s.enroll}</td>
-                  <td>
-                    {s.verify ? (
-                      <span className="admin-badge-verified">Verified</span>
-                    ) : (
-                      <span className="admin-badge-pending">Pending</span>
-                    )}
+            </thead>
+
+            <tbody>
+              {filtered.length === 0 ? (
+                <tr>
+                  <td colSpan="4" className="admin-empty">
+                    No Students Found
                   </td>
                 </tr>
-              ))
-            )}
-          </tbody>
-        </table>
-      </div>
+              ) : (
+                filtered.map((s, i) => (
+                  <tr key={s._id}>
+                    <td>{i + 1}</td>
+                    <td>{s.name}</td>
+                    <td>{s.enroll}</td>
+                    <td>
+                      {s.verify ? (
+                        <span className="admin-badge-verified">Verified</span>
+                      ) : (
+                        <span className="admin-badge-pending">Pending</span>
+                      )}
+                    </td>
+                  </tr>
+                ))
+              )}
+            </tbody>
+          </table>
+        </div>
+      )}
     </div>
   );
 }
