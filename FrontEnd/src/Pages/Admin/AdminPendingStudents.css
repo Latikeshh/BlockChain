@@ -1,0 +1,114 @@
+.admin-pending-container {
+  padding: 20px;
+  width: 100%;
+}
+
+.admin-pending-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.admin-pending-header h2 {
+  margin: 0;
+  font-size: 1.5rem;
+  color: #333;
+}
+
+.admin-pending-header p {
+  margin: 4px 0 0;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.admin-search-input {
+  padding: 10px 16px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  width: 280px;
+  font-size: 0.95rem;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.admin-search-input:focus {
+  outline: none;
+  border-color: #4a90e2;
+  box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.1);
+}
+
+.admin-pending-table-card {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+}
+
+.admin-pending-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.admin-pending-table thead {
+  background: #f8f9fa;
+}
+
+.admin-pending-table th {
+  padding: 14px 16px;
+  text-align: left;
+  font-weight: 600;
+  color: #555;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.admin-pending-table td {
+  padding: 14px 16px;
+  border-top: 1px solid #eee;
+  color: #333;
+}
+
+.admin-pending-table tbody tr:hover {
+  background: #fafafa;
+}
+
+.admin-badge-pending {
+  display: inline-block;
+  padding: 4px 12px;
+  background: #fff3cd;
+  color: #856404;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.admin-loading {
+  text-align: center;
+  padding: 40px;
+  color: #666;
+}
+
+.admin-empty {
+  text-align: center;
+  color: #999;
+  padding: 40px 16px !important;
+}
+
+@media (max-width: 768px) {
+  .admin-pending-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .admin-search-input {
+    width: 100%;
+  }
+
+  .admin-pending-table {
+    display: block;
+    overflow-x: auto;
+  }
+}

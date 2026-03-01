@@ -17,6 +17,9 @@ import AdminDashboard from "./Pages/Admin/AdminDashboard";
 import AddTeacher from "./Pages/Admin/AddTeacher";
 import ManageTeachers from "./Pages/Admin/ManageTeachers";
 import AdminSettings from "./Pages/Admin/AdminSettings";
+import AdminVerifiedStudents from "./Pages/Admin/AdminVerifiedStudents";
+import AdminPendingStudents from "./Pages/Admin/AdminPendingStudents";
+import AdminAllStudents from "./Pages/Admin/AdminAllStudents";
 import StudentLogin from "./Pages/Student/StudentLogin";
 import TeacherLogin from "./Pages/Teacher/TeacherLogin";
 import StudentStatus from "./Pages/Student/StudentStatus";
@@ -117,6 +120,31 @@ const App = () => {
             <ProtectedRoute>
               <AdminLayout>
                 <ContactList />
+              </AdminLayout>
+            </ProtectedRoute>
+          } />
+          
+          {/* New Admin Student Pages */}
+          <Route path="/admin/verifiedstudents" element={
+            <ProtectedRoute>
+              <AdminLayout>
+                <AdminVerifiedStudents />
+              </AdminLayout>
+            </ProtectedRoute>
+          } />
+          
+          <Route path="/admin/pending" element={
+            <ProtectedRoute>
+              <AdminLayout>
+                <AdminPendingStudents />
+              </AdminLayout>
+            </ProtectedRoute>
+          } />
+          
+          <Route path="/admin/allstudents" element={
+            <ProtectedRoute>
+              <AdminLayout>
+                <AdminAllStudents />
               </AdminLayout>
             </ProtectedRoute>
           } />
