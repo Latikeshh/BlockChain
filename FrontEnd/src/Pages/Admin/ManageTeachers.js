@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { Table, Button, Card, Spinner } from "react-bootstrap";
 import "./ManageTeachers.css";
 
 export default function ManageTeachers() {
@@ -60,8 +59,8 @@ export default function ManageTeachers() {
   );
 
   return (
-    <div className="manage-wrapper">
-      <div className="manage-header">
+    <div className="teachers-container">
+      <div className="teachers-header">
         <div>
           <h2>Manage Teachers</h2>
           <p>View, edit and manage teacher accounts</p>
@@ -71,61 +70,51 @@ export default function ManageTeachers() {
           placeholder="Search by name or email..."
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          className="search-box"
+          className="teachers-search-input"
         />
       </div>
 
-      <Card className="manage-card">
-        <Card.Body>
-          {loading ? (
-            <div className="loading-container">
-              <Spinner animation="border" />
-            </div>
-          ) : filtered.length === 0 ? (
-            <div className="empty-container">
-              <p>No teachers found.</p>
-            </div>
-          ) : (
-            <Table hover responsive className="manage-table">
-              <thead>
-                <tr>
-                  <th>#</th>
-                  <th>Name</th>
-                  <th>Email</th>
-                  <th style={{ textAlign: "center" }}>Actions</th>
+      {loading ? (
+        <div className="teachers-loading">Loading teachers...</div>
+      ) : filtered.length === 0 ? (
+        <div className="teachers-empty">No Teachers Found</div>
+      ) : (
+        <div className="teachers-table-card">
+          <table className="teachers-table">
+            <thead>
+              <tr>
+                <th>Sr No</th>
+                <th>Teacher Name</th>
+                <th>Email</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {filtered.map((teacher, index) => (
+                <tr key={teacher._id}>
+                  <td>{index + 1}</td>
+                  <td>{teacher.name}</td>
+                  <td>{teacher.email}</td>
+                  <td>
+                    <button
+                      className="btn-edit"
+                      onClick={() => window.alert("Edit feature coming soon")}
+                    >
+                      Edit
+                    </button>
+                    <button
+                      className="btn-delete"
+                      onClick={() => handleDelete(teacher._id)}
+                    >
+                      Delete
+                    </button>
+                  </td>
                 </tr>
-              </thead>
-              <tbody>
-                {filtered.map((teacher, index) => (
-                  <tr key={teacher._id}>
-                    <td>{index + 1}</td>
-                    <td className="teacher-name">{teacher.name}</td>
-                    <td>{teacher.email}</td>
-                    <td className="action-column">
-                      <Button
-                        size="sm"
-                        className="edit-btn"
-                        onClick={() =>
-                          window.alert("Edit feature coming soon")
-                        }
-                      >
-                        Edit
-                      </Button>
-                      <Button
-                        size="sm"
-                        className="delete-btn"
-                        onClick={() => handleDelete(teacher._id)}
-                      >
-                        Delete
-                      </Button>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </Table>
-          )}
-        </Card.Body>
-      </Card>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
     </div>
   );
 }
