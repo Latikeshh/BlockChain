@@ -37,6 +37,10 @@ export default function AdminSidebar() {
           <span className="nav-icon">⚙️</span>
           Settings
         </Link>
+        <Link to="/admin/contacts" className="nav-item">
+          <span className="nav-icon">📩</span>
+          Contacts
+        </Link>
       </nav>
 
       <button className="logout-btn" onClick={logout}>
