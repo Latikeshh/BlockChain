@@ -143,7 +143,11 @@
 .admin-sidebar nav a:nth-child(2)::after { content: '📊'; margin-left: auto; }
 .admin-sidebar nav a:nth-child(3)::after { content: '➕'; margin-left: auto; }
 .admin-sidebar nav a:nth-child(4)::after { content: '👥'; margin-left: auto; }
-.admin-sidebar nav a:nth-child(5)::after { content: '⚙️'; margin-left: auto; }
+.admin-sidebar nav a:nth-child(5)::after { content: '👨‍🎓'; margin-left: auto; }
+.admin-sidebar nav a:nth-child(6)::after { content: '✅'; margin-left: auto; }
+.admin-sidebar nav a:nth-child(7)::after { content: '⏳'; margin-left: auto; }
+.admin-sidebar nav a:nth-child(8)::after { content: '⚙️'; margin-left: auto; }
+.admin-sidebar nav a:nth-child(9)::after { content: '📩'; margin-left: auto; }
 
 /* ================= LOGOUT BUTTON ================= */
 .admin-sidebar .logout-btn {

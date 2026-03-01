@@ -12,7 +12,7 @@ export default function AdminSidebar() {
 
   return (
     <div className="admin-sidebar">
-      <h3 className="logo">Admin Panel</h3>
+      <h3 className="logo">Admin 77Panel</h3>
       
       <p className="welcome">Welcome,<br/> {name}</p>
 
@@ -32,6 +32,18 @@ export default function AdminSidebar() {
         <Link to="/admin/teachers" className="nav-item">
           <span className="nav-icon">👥</span>
           Manage Teachers
+        </Link>
+        <Link to="/admin/allstudents" className="nav-item">
+          <span className="nav-icon">👨‍🎓</span>
+          All Students
+        </Link>
+        <Link to="/admin/verifiedstudents" className="nav-item">
+          <span className="nav-icon">✅</span>
+          Verified Students
+        </Link>
+        <Link to="/admin/pending" className="nav-item">
+          <span className="nav-icon">⏳</span>
+          Pending Students
         </Link>
         <Link to="/admin/settings" className="nav-item">
           <span className="nav-icon">⚙️</span>

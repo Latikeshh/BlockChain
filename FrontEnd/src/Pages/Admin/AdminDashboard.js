@@ -101,21 +101,21 @@ export default function AdminDashboard() {
       number: studentCount, 
       icon: "👨‍🎓",
       type: "success",
-      onClick: () => handleCardClick("/teacher/verifiedstudents")
+      onClick: () => handleCardClick("/admin/allstudents")
     },
     { 
       label: "Verified Students", 
       number: verifiedCount, 
       icon: "✅",
       type: "info",
-      onClick: () => handleCardClick("/teacher/verifiedstudents")
+      onClick: () => handleCardClick("/admin/verifiedstudents")
     },
     { 
       label: "Pending Requests", 
       number: pendingCount, 
       icon: "⏳",
       type: "warning",
-      onClick: () => handleCardClick("/teacher/pending")
+      onClick: () => handleCardClick("/admin/pending")
     },
     {
       label: "Contacts",
@@ -156,13 +156,13 @@ export default function AdminDashboard() {
       icon: "📋",
       title: "Verified Students",
       description: "View verified student records",
-      onClick: () => navigate("/teacher/verifiedstudents")
+      onClick: () => navigate("/admin/verifiedstudents")
     },
     {
       icon: "📥",
       title: "Pending Students",
       description: "Review pending student requests",
-      onClick: () => navigate("/teacher/pending")
+      onClick: () => navigate("/admin/pending")
     },
   ];
 
