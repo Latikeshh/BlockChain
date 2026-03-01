@@ -36,63 +36,37 @@ export default function AdminDashboard() {
   /* ================= FETCH COUNTS ================= */
   useEffect(() => {
     const fetchCounts = async () => {
-      // Skip API calls for admin token, just set counts to 0
-      if (token === "admin-token") {
-        setStudentCount(0);
-        setPendingCount(0);
-        setVerifiedCount(0);
-        setTeacherCount(0);
-        setContactCount(0);
-        setLoading(false);
-        return;
-      }
-
+      
       try {
-        // Fetch student count
-        const studentRes = await fetch("http://localhost:8000/student/count", {
+        // Fetch all students and calculate counts in frontend (same as TeacherDashboard)
+        const studentRes = await fetch("http://localhost:8000/student/getst", {
           headers: {
             Authorization: `Bearer ${token}`,
           },
         });
-        const studentData = await studentRes.json();
+        
         if (studentRes.ok) {
-          setStudentCount(studentData.count || 0);
-        }
-
-        // Fetch pending students
-        const pendingRes = await fetch("http://localhost:8000/student/pending/count", {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-        const pendingData = await pendingRes.json();
-        if (pendingRes.ok) {
-          setPendingCount(pendingData.count || 0);
-        }
-
-        // Fetch verified students
-        const verifiedRes = await fetch("http://localhost:8000/student/verified/count", {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-        const verifiedData = await verifiedRes.json();
-        if (verifiedRes.ok) {
-          setVerifiedCount(verifiedData.count || 0);
+          const students = await studentRes.json();
+          const verified = students.filter(s => s.verify === true).length;
+          const pending = students.filter(s => s.verify === false).length;
+          
+          setStudentCount(students.length || 0);
+          setVerifiedCount(verified);
+          setPendingCount(pending);
         }
 
         // Fetch teacher count
-        const teacherRes = await fetch("http://localhost:8000/teacher/teachers/count", {
+        const teacherRes = await fetch("http://localhost:8000/teacher/teachers", {
           headers: {
             Authorization: `Bearer ${token}`,
           },
         });
         const teacherData = await teacherRes.json();
         if (teacherRes.ok) {
-          setTeacherCount(teacherData.count || 0);
+          setTeacherCount(teacherData.length || 0);
         }
 
-        // contact count
+        // contact count (same as TeacherDashboard)
         try {
           const contactRes = await fetch("http://localhost:8000/contact/count", {
             headers: { Authorization: `Bearer ${token}` },
