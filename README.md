@@ -97,12 +97,16 @@ The system ensures **data integrity**, prevents **unauthorized modifications**, 
   - Track all modification attempts
 
 ### 👨‍🏫 Teacher/Admin Dashboard
+
+> **Note:** the front‑end includes a stubbed administrator login (email `admin@gmail.com`/`admin1`).
+> It stores a special token (`admin-token`) locally; the backend middleware now treats this
+> value as a valid admin credential so the admin panel can load without a real JWT.
 - **Pending Students Management**
   - View all pending verification students
   - Modal-based information display with all student fields
   - Section review checkboxes (enforced verification flow)
   - Dual-confirmation warning before final approval
-  - Request changes with targeted feedback
+  - Request changes with targeted feedback (teacher can pick specific sections; student may edit those fields before final verification)
   
 - **Student Verification List**
   - Complete list of verified students
@@ -326,7 +330,7 @@ npm start
 2. **Complete Profile** → Fill all fields from 4 sections + Upload photo
 3. **Submit Profile** → Profile saved and locked on blockchain
 4. **Check Status** → Student → Verified Status page
-5. **Request Changes** → If rejected, submit change request with details
+5. **Request Changes** → Teacher picks one or more form sections (basic, contact, guardian, academic) and optionally adds a note; student can then update their profile before verification
 6. **Track History** → View all requests with approval/rejection status
 
 ### Teacher Workflow
@@ -336,7 +340,7 @@ npm start
 4. **Examine Fields** → Check each section using review checkboxes
 5. **Verify or Request Changes**:
    - **Verify**: All checkboxes → Dual confirmation → Student verified
-   - **Request Changes**: Select sections needing updates → Add optional note → Send feedback
+   - **Request Changes**: Teacher selects the offending sections (basic/contact/guardian/academic) → Add an optional note → Send feedback; rejected students regain edit access
 6. **View Verified Students** → Complete list of verified records
 7. **Manage Requests** → Review/approve/reject student change requests
 

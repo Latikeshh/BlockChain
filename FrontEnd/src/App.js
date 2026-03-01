@@ -21,7 +21,7 @@ import StudentLogin from "./Pages/Student/StudentLogin";
 import TeacherLogin from "./Pages/Teacher/TeacherLogin";
 import StudentStatus from "./Pages/Student/StudentStatus";
 import StudentSearch from "./Pages/Student/StudentSearch";
-import PendingStudents from "./Pages/Student/PendingStudents";
+import PendingStudents from "./Pages/Teacher/PendingStudents";
 import TeacherRequests from "./Pages/Teacher/TeacherRequests";
 import ContactList from "./Pages/ContactList";
 import StudentRequest from "./Pages/Student/StudentRequest";

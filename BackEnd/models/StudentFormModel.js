@@ -33,6 +33,13 @@ const StudentFormSchema = new mongoose.Schema(
       default: "pending",
     },
     rejectNote: { type: String, trim: true, default: null },
+    // track which sections were marked for revision by teacher
+    rejectSections: {
+      basic: { type: Boolean, default: false },
+      contact: { type: Boolean, default: false },
+      guardian: { type: Boolean, default: false },
+      academic: { type: Boolean, default: false },
+    },
   },
   { timestamps: true }
 );

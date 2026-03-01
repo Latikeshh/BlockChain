@@ -255,6 +255,18 @@
   margin-bottom: 25px;
 }
 
+/* Banner shown when teacher has rejected the submission */
+.rejected-banner {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 18px 22px;
+  background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);
+  border: 1px solid #fca5a5;
+  border-radius: 12px;
+  margin-bottom: 25px;
+}
+
 .lock-icon {
   font-size: 28px;
 }

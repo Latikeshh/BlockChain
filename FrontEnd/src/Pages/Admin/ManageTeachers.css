@@ -1,130 +1,115 @@
-/* Import CSS Variables */
-@import url('../../Variables.css');
+/* Page Wrapper */
+.manage-wrapper {
+  padding: 40px;
+  background: linear-gradient(to right, #f4f7fb, #eef2f7);
+  min-height: 100vh;
+  font-family: "Segoe UI", sans-serif;
+}
 
-/* ================= PAGE CONTAINER ================= */
-.manage-teachers-container {
-  padding: 20px;
-  max-width: 100%;
+/* Header Section */
+.manage-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.manage-header h2 {
+  margin: 0;
+  font-weight: 600;
+  color: #2c3e50;
+}
+
+.manage-header p {
+  margin: 4px 0 0;
+  color: #7f8c8d;
+  font-size: 14px;
+}
+
+/* Search Box */
+.search-box {
+  padding: 8px 14px;
+  border-radius: 6px;
+  border: 1px solid #dcdfe6;
+  outline: none;
+  width: 260px;
+  transition: 0.3s;
+}
+
+.search-box:focus {
+  border-color: #3498db;
+  box-shadow: 0 0 6px rgba(52, 152, 219, 0.3);
+}
+
+/* Card */
+.manage-card {
+  width: max-content;
+  border-radius: 10px;
+  border: none;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+/* Table */
+.manage-table {
   margin: 0;
 }
 
-/* ================= HEADER SECTION ================= */
-.header-section {
-  background: var(--gradient-primary);
-  border-radius: 16px;
-  padding: 30px;
-  color: white;
-  margin-bottom: 30px;
+.manage-table thead {
+  background-color: #f8f9fa;
 }
 
-.header-title {
-  font-size: 28px;
-  font-weight: 700;
-  margin-bottom: 8px;
-}
-
-.header-subtitle {
-  font-size: 14px;
-  opacity: 0.9;
-}
-
-/* ================= TABLE CARD ================= */
-.table-card {
-  border-radius: 16px;
-  box-shadow: var(--shadow-card);
-  border: none;
-  overflow: hidden;
-  background: white;
-}
-
-/* ================= TABLE STYLES ================= */
-.table-custom {
-  margin-bottom: 0;
-}
-
-.table-custom thead {
-  background: var(--gradient-primary);
-  color: white;
-}
-
-.table-custom th {
+.manage-table th {
   font-weight: 600;
-  padding: 16px;
-  border: none;
+  color: #34495e;
 }
 
-.table-custom td {
-  padding: 16px;
+.manage-table td {
   vertical-align: middle;
-  border-bottom: 1px solid var(--border-light);
-  color: var(--text-primary);
 }
 
-.table-custom tbody tr:hover {
-  background-color: var(--bg-light);
+.manage-table tbody tr:hover {
+  background-color: #f1f5f9;
+  transition: 0.2s ease-in-out;
 }
 
-/* ================= ACTION BUTTONS ================= */
-.action-btn {
-  margin-right: 8px;
-  border-radius: 8px;
-  padding: 6px 12px;
-  font-size: 13px;
+.teacher-name {
+  font-weight: 500;
+  color: #2c3e50;
+}
+
+/* Actions */
+.action-column {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+
+.edit-btn {
+  background-color: #3498db;
   border: none;
-  cursor: pointer;
-  transition: all 0.3s ease;
+  padding: 6px 12px;
+  border-radius: 5px;
 }
 
-.action-btn-edit {
-  background: var(--color-info);
-  color: white;
+.edit-btn:hover {
+  background-color: #2980b9;
 }
 
-.action-btn-edit:hover {
-  background: #2563eb;
+.delete-btn {
+  background-color: #e74c3c;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 5px;
 }
 
-.action-btn-delete {
-  background: var(--color-danger);
-  color: white;
+.delete-btn:hover {
+  background-color: #c0392b;
 }
 
-.action-btn-delete:hover {
-  background: #dc2626;
-}
-
-/* ================= EMPTY STATE ================= */
-.empty-state {
+/* Loading & Empty */
+.loading-container,
+.empty-container {
   text-align: center;
-  padding: 40px;
-  color: var(--text-muted);
-}
-
-/* ================= LOADING STATE ================= */
-.loading-state {
-  text-align: center;
-  padding: 40px;
-  color: var(--text-muted);
-}
-
-/* ================= RESPONSIVE ================= */
-@media (max-width: 768px) {
-  .header-section {
-    padding: 20px;
-  }
-  
-  .header-title {
-    font-size: 24px;
-  }
-  
-  .table-custom th,
-  .table-custom td {
-    padding: 12px 8px;
-    font-size: 14px;
-  }
-  
-  .action-btn {
-    padding: 4px 8px;
-    font-size: 12px;
-  }
+  padding: 40px 0;
+  color: #7f8c8d;
 }

@@ -10,6 +10,11 @@ export default function StudentProfile() {
   const [hasProfile, setHasProfile] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
+  // rejection metadata (if teacher sent feedback)
+  const [status, setStatus] = useState(""); // pending|verified|rejected
+  const [rejectNote, setRejectNote] = useState("");
+  const [rejectSections, setRejectSections] = useState({});
+
   const [form, setForm] = useState(() => {
     // start with values from localStorage user if available
     const user = localStorage.getItem("user");
@@ -62,6 +67,9 @@ export default function StudentProfile() {
         if (res.ok && data.success) {
           setIsProfileLocked(data.isProfileLocked === true);
           setHasProfile(data.hasProfile === true);
+          setStatus(data.status || "");
+          setRejectNote(data.rejectNote || "");
+          setRejectSections(data.rejectSections || {});
 
           // if backend returned basic info (name/enroll) use it as defaults
           if (!data.data) {
@@ -113,20 +121,48 @@ export default function StudentProfile() {
 
   /* ================= HANDLERS ================= */
 
-  const handleChange = (e) => {
-    if (isProfileLocked) return;
+  // determine if a given section may be edited by the student
+  const canEditSection = (section) => {
+    if (status === "rejected") {
+      // only sections that were explicitly rejected
+      return !!rejectSections[section];
+    }
+    return !isProfileLocked;
+  };
+
+  const handleChange = (e, section) => {
+    if (!canEditSection(section)) return;
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
   const handlePhoto = (e) => {
-    if (isProfileLocked) return;
+    if (!canEditSection("basic")) return; // photo part of basic section
     const file = e.target.files[0];
     setPhotoFile(file);
     setPhoto(URL.createObjectURL(file));
   };
 
   // determine whether all required fields have some value
-  const isFormValid = Object.values(form).every((val) => val !== "" && val !== null);
+  const isFormValid = (() => {
+    if (status === "rejected") {
+      // only fields in editable sections must be filled
+      const required = [];
+      if (canEditSection("basic")) {
+        required.push("name", "enroll", "branch", "year", "dob", "gender");
+      }
+      if (canEditSection("contact")) {
+        required.push("phone", "email", "address");
+      }
+      if (canEditSection("guardian")) {
+        required.push("fatherName", "motherName", "parentPhone");
+      }
+      if (canEditSection("academic")) {
+        required.push("sem1", "sem2", "sem3", "sem4", "sem5", "sem6");
+      }
+      return required.every((f) => form[f] !== "" && form[f] !== null);
+    }
+    return Object.values(form).every((val) => val !== "" && val !== null);
+  })();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -169,6 +205,10 @@ export default function StudentProfile() {
         setHasProfile(true);
         // lock immediately regardless of backend flag (should be true)
         setIsProfileLocked(true);
+        // after re-submitting clear any rejection state locally
+        setStatus("pending");
+        setRejectNote("");
+        setRejectSections({});
 
         if (data.data) {
           const profile = data.data;
@@ -241,7 +281,23 @@ export default function StudentProfile() {
               </p>
             </div>
 
-            {isProfileLocked && (
+            {status === "rejected" && (
+              <div className="rejected-banner">
+                <span className="lock-icon">⚠️</span>
+                <div className="locked-text">
+                  <strong>Changes Requested</strong>
+                  <p>
+                    Your teacher has asked you to update the following sections: <br />
+                    {Object.entries(rejectSections)
+                      .filter(([_, v]) => v)
+                      .map(([k]) => k.charAt(0).toUpperCase() + k.slice(1))
+                      .join(", ") || "(none specified)"}
+                  </p>
+                  {rejectNote && <p>Note: {rejectNote}</p>}
+                </div>
+              </div>
+            )}
+            {isProfileLocked && status !== "rejected" && (
               <div className="locked-banner">
                 <span className="lock-icon">🔒</span>
                 <div className="locked-text">
@@ -263,7 +319,7 @@ export default function StudentProfile() {
                     </div>
                   )}
                 </div>
-                {!isProfileLocked && (
+                {canEditSection("basic") && (
                   <label className="file-upload-btn">
                     <input type="file" onChange={handlePhoto} accept="image/*" />
                     Choose Photo
@@ -280,8 +336,8 @@ export default function StudentProfile() {
                       type="text"
                       name="name"
                       value={form.name}
-                      onChange={handleChange}
-                      disabled={isProfileLocked}
+                      onChange={(e) => handleChange(e, "basic")}
+                      disabled={!canEditSection("basic")}
                       placeholder="Enter your full name"
                     />
                   </div>
@@ -291,8 +347,8 @@ export default function StudentProfile() {
                       type="text"
                       name="enroll"
                       value={form.enroll}
-                      onChange={handleChange}
-                      disabled={isProfileLocked}
+                      onChange={(e) => handleChange(e, "basic")}
+                      disabled={!canEditSection("basic")}
                       placeholder="Enter enrollment number"
                     />
                   </div>
@@ -302,8 +358,8 @@ export default function StudentProfile() {
                       type="text"
                       name="branch"
                       value={form.branch}
-                      onChange={handleChange}
-                      disabled={isProfileLocked}
+                      onChange={(e) => handleChange(e, "basic")}
+                      disabled={!canEditSection("basic")}
                       placeholder="Enter branch"
                     />
                   </div>
@@ -312,8 +368,8 @@ export default function StudentProfile() {
                     <select
                       name="year"
                       value={form.year}
-                      onChange={handleChange}
-                      disabled={isProfileLocked}
+                      onChange={(e) => handleChange(e, "basic")}
+                      disabled={!canEditSection("basic")}
                     >
                       <option value="">Select Year</option>
                       <option value="1st Year">1st Year</option>
@@ -328,8 +384,8 @@ export default function StudentProfile() {
                       type="date"
                       name="dob"
                       value={form.dob}
-                      onChange={handleChange}
-                      disabled={isProfileLocked}
+                      onChange={(e) => handleChange(e, "basic")}
+                      disabled={!canEditSection("basic")}
                     />
                   </div>
                   <div className="form-group">
@@ -338,8 +394,8 @@ export default function StudentProfile() {
                     required
                       name="gender"
                       value={form.gender}
-                      onChange={handleChange}
-                      disabled={isProfileLocked}
+                      onChange={(e) => handleChange(e, "basic")}
+                      disabled={!canEditSection("basic")}
                     >
                       <option value="">Select Gender</option>
                       <option value="Male">Male</option>
@@ -360,8 +416,8 @@ export default function StudentProfile() {
                       type="tel"
                       name="phone"
                       value={form.phone}
-                      onChange={handleChange}
-                      disabled={isProfileLocked}
+                      onChange={(e) => handleChange(e, "contact")}
+                      disabled={!canEditSection("contact")}
                       placeholder="Enter phone number"
                     />
                   </div>
@@ -372,8 +428,8 @@ export default function StudentProfile() {
                       type="email"
                       name="email"
                       value={form.email}
-                      onChange={handleChange}
-                      disabled={isProfileLocked}
+                      onChange={(e) => handleChange(e, "contact")}
+                      disabled={!canEditSection("contact")}
                       placeholder="Enter email address"
                     />
                   </div>
@@ -383,8 +439,8 @@ export default function StudentProfile() {
                     required
                       name="address"
                       value={form.address}
-                      onChange={handleChange}
-                      disabled={isProfileLocked}
+                      onChange={(e) => handleChange(e, "contact")}
+                      disabled={!canEditSection("contact")}
                       placeholder="Enter your address"
                       rows="3"
                     />
@@ -402,8 +458,8 @@ export default function StudentProfile() {
                       type="text"
                       name="fatherName"
                       value={form.fatherName}
-                      onChange={handleChange}
-                      disabled={isProfileLocked}
+                      onChange={(e) => handleChange(e, "guardian")}
+                      disabled={!canEditSection("guardian")}
                       placeholder="Enter father's name"
                     />
                   </div>
@@ -414,8 +470,8 @@ export default function StudentProfile() {
                       type="text"
                       name="motherName"
                       value={form.motherName}
-                      onChange={handleChange}
-                      disabled={isProfileLocked}
+                      onChange={(e) => handleChange(e, "guardian")}
+                      disabled={!canEditSection("guardian")}
                       placeholder="Enter mother's name"
                     />
                   </div>
@@ -426,8 +482,8 @@ export default function StudentProfile() {
                       type="tel"
                       name="parentPhone"
                       value={form.parentPhone}
-                      onChange={handleChange}
-                      disabled={isProfileLocked}
+                      onChange={(e) => handleChange(e, "guardian")}
+                      disabled={!canEditSection("guardian")}
                       placeholder="Enter parent's contact"
                     />
                   </div>
@@ -444,8 +500,8 @@ export default function StudentProfile() {
                         type="number"
                         name={sem}
                         value={form[sem]}
-                        onChange={handleChange}
-                        disabled={isProfileLocked}
+                        onChange={(e) => handleChange(e, "academic")}
+                        disabled={!canEditSection("academic")}
                         placeholder="%"
                         min="0"
                         max="100"

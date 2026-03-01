@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import { Modal, Button } from "react-bootstrap";
 import { dialog } from "../../components/CustomDialog";
 import "./PendingStudents.css";
-import "./StudentProfile.css"; // reuse grid styling for info modal
 import StudentInfoDialog from "../../components/StudentInfoDialog";
 
 export default function PendingStudents() {
@@ -81,6 +80,9 @@ export default function PendingStudents() {
         _id: student._id,
         name: student.name,
         enroll: student.enroll,
+        status: data.status,
+        rejectNote: data.rejectNote,
+        rejectSections: data.rejectSections,
       });
       // reset review checkboxes and rejection form
       setSectionChecks({ basic: false, contact: false, guardian: false, academic: false });
@@ -139,7 +141,21 @@ export default function PendingStudents() {
   };
 
   // reject handlers
-  const handleOpenReject = () => setShowRejectModal(true);
+  const handleOpenReject = () => {
+    // if we previously rejected this student, prefill the modal
+    if (selectedStudent?.rejectSections) {
+      setRejectSections({
+        basic: !!selectedStudent.rejectSections.basic,
+        contact: !!selectedStudent.rejectSections.contact,
+        guardian: !!selectedStudent.rejectSections.guardian,
+        academic: !!selectedStudent.rejectSections.academic,
+      });
+    }
+    if (selectedStudent?.rejectNote) {
+      setRejectNote(selectedStudent.rejectNote);
+    }
+    setShowRejectModal(true);
+  };
   const handleRejectSubmit = async () => {
     const selected = Object.keys(rejectSections).filter((s) => rejectSections[s]);
     if (selected.length === 0) {
@@ -158,7 +174,10 @@ export default function PendingStudents() {
       });
       const data = await res.json();
       if (res.ok) {
-        dialog.success("Feedback sent", data.message);
+        dialog.success(
+          "Feedback sent",
+          "Student has been notified and can now revise the selected sections."
+        );
         setShowRejectModal(false);
         setShowInfoModal(false);
         setSelectedStudent(null);

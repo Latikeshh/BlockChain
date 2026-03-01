@@ -195,17 +195,44 @@ exports.unverifyStudent = async (req, res) => {
 };
 
 /* REJECT STUDENT (send feedback about sections needing modification) */
+// this route is called by teacher panel when reviewing a pending student
+// it mirrors the behavior of rejecting a form: mark the form as rejected,
+// store which sections need changes, save an optional note, and unlock the
+// student's profile so they can make updates.
 exports.rejectStudent = async (req, res) => {
   try {
+    // only teacher or admin may send rejection feedback
+    if (req.user.role !== "teacher" && req.user.role !== "admin") {
+      return res.status(403).json({ message: "Access denied" });
+    }
+
     const { id } = req.params;
-    const { sections, note } = req.body;
+    const { sections = [], note } = req.body;
 
     const student = await Student.findById(id);
     if (!student) {
       return res.status(404).json({ message: "Student not found" });
     }
 
-    // for now we simply log the feedback; future enhancements may send email or create a notification
+    // update the pending form if it exists
+    const StudentForm = require("../models/StudentFormModel");
+    const form = await StudentForm.findOne({ studentId: id, status: "pending" });
+    if (form) {
+      form.status = "rejected";
+      form.rejectNote = note || "";
+
+      const rejects = { basic: false, contact: false, guardian: false, academic: false };
+      sections.forEach((s) => {
+        if (rejects.hasOwnProperty(s)) rejects[s] = true;
+      });
+      form.rejectSections = rejects;
+      await form.save();
+
+      // unlock profile so student can edit
+      student.isProfileLocked = false;
+      await student.save();
+    }
+
     console.log(`Teacher rejected student ${id}, sections:`, sections, "note:", note);
 
     res.json({ message: "Feedback sent to student", sections, note });

@@ -112,13 +112,17 @@ exports.getMyProfile = async (req, res) => {
     const StudentForm = require('../models/StudentFormModel');
     const form = await StudentForm.findOne({ studentId });
     if (form) {
-      const { status, rejectNote, ...plain } = form.toObject();
+      const { status, rejectNote, rejectSections, ...plain } = form.toObject();
+      // if form was rejected, allow student to edit again by unlocking
+      const locked = status !== "rejected";
       return res.json({
         success: true,
         data: plain,
+        status,
+        rejectNote,
+        rejectSections,
         hasProfile: true,
-        // profile locked because student submitted
-        isProfileLocked: true,
+        isProfileLocked: locked,
         verify: studentRecord ? studentRecord.verify : false,
         name: studentRecord?.name,
         enroll: studentRecord?.enroll
@@ -165,11 +169,16 @@ exports.getProfileById = async (req, res) => {
     const form = await StudentForm.findOne({ studentId });
     if (form) {
       // send the unencrypted values directly
-      const { status, rejectNote, ...plain } = form.toObject();
+      const { status, rejectNote, rejectSections, ...plain } = form.toObject();
+      // if form was rejected, unlock for editing (teacher might inspect the rejection status)
+      const locked = status !== "rejected";
       return res.json({
         success: true,
         data: plain,
-        isProfileLocked: true,
+        status,
+        rejectNote,
+        rejectSections,
+        isProfileLocked: locked,
         hasProfile: true,
       });
     }

@@ -27,6 +27,20 @@ export default function StudentInfoDialog({
       <Modal.Body style={{ maxHeight: "70vh", overflowY: "auto" }}>
         {student && (
           <div className="profile-form">
+            {student.status === "rejected" && (
+              <div className="teacher-reject-info">
+                <p>
+                  <strong>Previously flagged sections:</strong>{" "}
+                  {student.rejectSections
+                    ? Object.entries(student.rejectSections)
+                        .filter(([_, v]) => v)
+                        .map(([k]) => k.charAt(0).toUpperCase() + k.slice(1))
+                        .join(", ")
+                    : "(none)"}
+                </p>
+                {student.rejectNote && <p>Note: {student.rejectNote}</p>}
+              </div>
+            )}
             {/* photo section */}
             {student.photo && (
               <div className="photo-section">

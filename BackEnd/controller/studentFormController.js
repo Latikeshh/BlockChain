@@ -14,7 +14,16 @@ exports.submitForm = async (req, res) => {
       data.photo = req.file.filename;
     }
 
-    // upsert form
+    // whenever student resubmits we clear any previous rejection info
+    data.rejectNote = null;
+    data.rejectSections = {
+      basic: false,
+      contact: false,
+      guardian: false,
+      academic: false,
+    };
+
+    // upsert form (status reset to pending)
     const form = await StudentForm.findOneAndUpdate(
       { studentId },
       { ...data, status: "pending" },
@@ -114,13 +123,14 @@ exports.verifyForm = async (req, res) => {
 };
 
 // teacher / admin: reject a form, optional note
+// request body may include `sections` array indicating which areas need updates
 exports.rejectForm = async (req, res) => {
   try {
     if (req.user.role !== "teacher" && req.user.role !== "admin") {
       return res.status(403).json({ success: false, message: "Access denied" });
     }
     const { id } = req.params;
-    const { note } = req.body;
+    const { note, sections = [] } = req.body;
 
     const form = await StudentForm.findOne({ studentId: id, status: "pending" });
     if (!form) {
@@ -129,7 +139,20 @@ exports.rejectForm = async (req, res) => {
 
     form.status = "rejected";
     form.rejectNote = note || "";
+
+    // populate rejectSections object with booleans
+    const rejects = { basic: false, contact: false, guardian: false, academic: false };
+    sections.forEach((s) => {
+      if (rejects.hasOwnProperty(s)) {
+        rejects[s] = true;
+      }
+    });
+    form.rejectSections = rejects;
+
     await form.save();
+
+    // unlock the student's profile so they can make edits
+    await Student.findByIdAndUpdate(id, { isProfileLocked: false });
 
     res.json({ success: true, message: "Form rejected", data: form });
   } catch (err) {
