@@ -1,7 +1,5 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Row, Col, Card } from "react-bootstrap";
-import "../../Variables.css";
 import "./AdminDashboard.css";
 
 export default function AdminDashboard() {
@@ -11,10 +9,11 @@ export default function AdminDashboard() {
   const [verifiedCount, setVerifiedCount] = useState(0);
   const [pendingCount, setPendingCount] = useState(0);
   const [contactCount, setContactCount] = useState(0);
-  const [adminName, setAdminName] = useState("");
+  const [loading, setLoading] = useState(true);
 
   const token = localStorage.getItem("token");
   const role = localStorage.getItem("role");
+  const name = localStorage.getItem("name") || "Admin";
 
   /* ================= NAVIGATION ================= */
   const handleCardClick = (path) => {
@@ -26,10 +25,15 @@ export default function AdminDashboard() {
     if (!token || role !== "admin") {
       navigate("/teacher/login");
     }
-    setAdminName(localStorage.getItem("name") || "Admin");
   }, [token, role, navigate]);
 
-  /* ================= GET COUNTS ================= */
+  /* ================= GET CURRENT DATE ================= */
+  const getCurrentDate = () => {
+    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+    return new Date().toLocaleDateString('en-US', options);
+  };
+
+  /* ================= FETCH COUNTS ================= */
   useEffect(() => {
     const fetchCounts = async () => {
       // Skip API calls for admin token, just set counts to 0
@@ -38,6 +42,8 @@ export default function AdminDashboard() {
         setPendingCount(0);
         setVerifiedCount(0);
         setTeacherCount(0);
+        setContactCount(0);
+        setLoading(false);
         return;
       }
 
@@ -100,139 +106,149 @@ export default function AdminDashboard() {
         }
       } catch (err) {
         console.error(err);
+      } finally {
+        setLoading(false);
       }
     };
     fetchCounts();
   }, [token]);
 
-  /* ================= CARD DATA ================= */
-  const statsCards = [
+  /* ================= STATS DATA ================= */
+  const statsData = [
     { 
-      title: "Total Teachers", 
-      value: teacherCount, 
-      bg: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)", 
-      path: "/admin/teachers",
-      icon: "👨‍🏫" 
+      label: "Total Teachers", 
+      number: teacherCount, 
+      icon: "👨‍🏫",
+      type: "primary",
+      onClick: () => handleCardClick("/admin/teachers")
     },
     { 
-      title: "Total Students", 
-      value: studentCount, 
-      bg: "linear-gradient(135deg, #10b981 0%, #059669 100%)", 
-      path: "/teacher/verifiedstudents",
-      icon: "👨‍🎓" 
+      label: "Total Students", 
+      number: studentCount, 
+      icon: "👨‍🎓",
+      type: "success",
+      onClick: () => handleCardClick("/teacher/verifiedstudents")
     },
     { 
-      title: "Verified Students", 
-      value: verifiedCount, 
-      bg: "linear-gradient(135deg, #3b82f6 0%, #2563eb 100%)", 
-      path: "/teacher/verifiedstudents",
-      icon: "✅" 
+      label: "Verified Students", 
+      number: verifiedCount, 
+      icon: "✅",
+      type: "info",
+      onClick: () => handleCardClick("/teacher/verifiedstudents")
     },
     { 
-      title: "Pending Requests", 
-      value: pendingCount, 
-      bg: "linear-gradient(135deg, #f59e0b 0%, #d97706 100%)", 
-      path: "/teacher/pending",
-      icon: "⏳" 
+      label: "Pending Requests", 
+      number: pendingCount, 
+      icon: "⏳",
+      type: "warning",
+      onClick: () => handleCardClick("/teacher/pending")
     },
     {
-      title: "Contacts",
-      value: contactCount,
-      bg: "linear-gradient(135deg, #34d399 0%, #059669 100%)",
-      path: "/admin/contacts",
-      icon: "📩"
+      label: "Contacts",
+      number: contactCount,
+      icon: "📩",
+      type: "success",
+      onClick: () => handleCardClick("/admin/contacts")
     },
   ];
 
-  const actionCards = [
+  /* ================= QUICK ACTIONS ================= */
+  const quickActions = [
     {
+      icon: "➕",
       title: "Add New Teacher",
       description: "Create teacher accounts and manage access",
-      icon: "➕",
-      path: "/admin/addteacher",
-      color: "#667eea"
+      onClick: () => navigate("/admin/addteacher")
     },
     {
+      icon: "👥",
       title: "Manage Teachers",
       description: "View, edit or remove teacher accounts",
-      icon: "👥",
-      path: "/admin/teachers",
-      color: "#10b981"
+      onClick: () => navigate("/admin/teachers")
     },
     {
+      icon: "⚙️",
       title: "System Settings",
       description: "Configure system preferences",
-      icon: "⚙️",
-      path: "/admin/settings",
-      color: "#6b7280"
+      onClick: () => navigate("/admin/settings")
     },
     {
+      icon: "📝",
       title: "Add Student",
       description: "Add new student records",
-      icon: "📝",
-      path: "/teacher/addstudent",
-      color: "#3b82f6"
+      onClick: () => navigate("/teacher/addstudent")
     },
     {
+      icon: "📋",
       title: "Verified Students",
       description: "View verified student records",
-      icon: "📋",
-      path: "/teacher/verifiedstudents",
-      color: "#10b981"
+      onClick: () => navigate("/teacher/verifiedstudents")
     },
     {
+      icon: "📥",
       title: "Pending Students",
       description: "Review pending student requests",
-      icon: "📥",
-      path: "/teacher/pending",
-      color: "#f59e0b"
+      onClick: () => navigate("/teacher/pending")
     },
   ];
 
   return (
-    <div className="admin-dashboard" style={{ padding: '20px' }}>
-      {/* Stats Cards */}
-      <div className="stats-section">
-        <Row className="stats-row">
-          {statsCards.map((card, idx) => (
-            <Col md={6} lg={3} key={idx} className="mb-4">
-              <div 
-                className="stat-card" 
-                onClick={() => handleCardClick(card.path)}
-                style={{ background: card.bg }}
-              >
-                <div className="stat-icon">{card.icon}</div>
-                <div className="stat-info">
-                  <h3 className="stat-value">{card.value}</h3>
-                  <p className="stat-title">{card.title}</p>
-                </div>
-              </div>
-            </Col>
-          ))}
-        </Row>
+    <div className="dashboard-container">
+      {/* Header Section */}
+      <div className="dashboard-header">
+        <div className="header-content">
+          <h1 className="dashboard-title">Welcome back, {name}! 👋</h1>
+          <p className="header-subtitle">Here's what's happening with your records today.</p>
+          <p className="header-date">{getCurrentDate()}</p>
+        </div>
       </div>
 
-      {/* Admin Actions */}
-      <div className="actions-section">
-        <h2 className="section-title">Quick Actions</h2>
-        <Row className="actions-row">
-          {actionCards.map((action, idx) => (
-            <Col md={6} lg={4} key={idx} className="mb-4">
+      {/* Stats Cards */}
+      {loading ? (
+        <div className="loading-state">
+          <div className="loading-spinner"></div>
+        </div>
+      ) : (
+        <>
+          <div className="stats-grid">
+            {statsData.map((stat, idx) => (
               <div 
-                className="action-card-new" 
-                onClick={() => handleCardClick(action.path)}
-                style={{ borderLeft: `4px solid ${action.color}` }}
+                key={idx} 
+                className={`stat-card-modern ${stat.type}`}
+                onClick={stat.onClick}
               >
-                <div className="action-icon">{action.icon}</div>
-                <div className="action-info">
-                  <h4>{action.title}</h4>
-                  <p>{action.description}</p>
+                <div className="stat-icon-wrapper">
+                  {stat.icon}
                 </div>
+                <h3 className="stat-number">{stat.number}</h3>
+                <p className="stat-label">{stat.label}</p>
               </div>
-            </Col>
-          ))}
-        </Row>
-      </div>
+            ))}
+          </div>
+
+          {/* Quick Actions */}
+          <div className="quick-actions">
+            <h2 className="section-heading">Quick Actions</h2>
+            <div className="actions-grid">
+              {quickActions.map((action, idx) => (
+                <div 
+                  key={idx} 
+                  className="action-card"
+                  onClick={action.onClick}
+                >
+                  <div className="action-icon-box">
+                    {action.icon}
+                  </div>
+                  <div className="action-details">
+                    <h4>{action.title}</h4>
+                    <p>{action.description}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </>
+      )}
     </div>
   );
 }

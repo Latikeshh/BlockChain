@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { dialog } from "../../components/CustomDialog";
 import "./ManageTeachers.css";
 
 export default function ManageTeachers() {
@@ -32,24 +33,28 @@ export default function ManageTeachers() {
   };
 
   const handleDelete = async (id) => {
-    if (!window.confirm("Are you sure you want to delete this teacher?"))
-      return;
+    dialog.confirm(
+      "Delete Teacher",
+      "Are you sure you want to delete this teacher?",
+      async () => {
+        try {
+          const token = localStorage.getItem("token");
+          const res = await fetch(`http://localhost:8000/teacher/${id}`, {
+            method: "DELETE",
+            headers: { Authorization: `Bearer ${token}` },
+          });
 
-    try {
-      const token = localStorage.getItem("token");
-      const res = await fetch(`http://localhost:8000/teacher/${id}`, {
-        method: "DELETE",
-        headers: { Authorization: `Bearer ${token}` },
-      });
-
-      if (res.ok) {
-        fetchTeachers();
-      } else {
-        alert("Error deleting teacher");
+          if (res.ok) {
+            dialog.success("Deleted", "Teacher deleted successfully");
+            fetchTeachers();
+          } else {
+            dialog.error("Error", "Unable to delete teacher");
+          }
+        } catch (err) {
+          dialog.error("Error", "Unable to delete teacher");
+        }
       }
-    } catch (err) {
-      alert("Error deleting teacher");
-    }
+    );
   };
 
   const filtered = teachers.filter(
@@ -98,7 +103,7 @@ export default function ManageTeachers() {
                   <td>
                     <button
                       className="btn-edit"
-                      onClick={() => window.alert("Edit feature coming soon")}
+                      onClick={() => dialog.info("Coming soon", "Edit feature coming soon")}
                     >
                       Edit
                     </button>

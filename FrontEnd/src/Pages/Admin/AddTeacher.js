@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Container, Form, Button, Row, Col, Card } from "react-bootstrap";
+import { dialog } from "../../components/CustomDialog";
 import "./AddTeacher.css";
 
 export default function AddTeacher() {
@@ -17,7 +18,7 @@ export default function AddTeacher() {
     e.preventDefault();
     
     if (!formData.name || !formData.email || !formData.password) {
-      alert("Please fill in required fields");
+      dialog.error("Missing Fields", "Please fill in required fields");
       return;
     }
 
@@ -29,17 +30,17 @@ export default function AddTeacher() {
       });
       const data = await res.json();
       if (res.ok) {
-        alert("Teacher added successfully!");
+        dialog.success("Added", "Teacher added successfully!");
         setFormData({
           name: "",
           email: "",
           password: ""
         });
       } else {
-        alert(data.message || "Error adding teacher");
+        dialog.error("Error", data.message || "Error adding teacher");
       }
     } catch (err) {
-      alert("Unable to connect to server. Please try again.");
+      dialog.error("Error", "Unable to connect to server. Please try again.");
     }
   };
 
