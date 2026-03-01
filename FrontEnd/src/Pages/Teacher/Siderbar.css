@@ -7,17 +7,17 @@
   height: 100vh;
   position: fixed;
   left: 0;
-  top: 0;
-  background: linear-gradient(180deg, #1e3a8a 0%, #4f46e5 100%);
+  background: linear-gradient(180deg, #1a1a2e 0%, #16213e 100%);
   color: white;
-  padding: 20px;
+  padding: 35px 25px;
   box-shadow: 4px 0 30px var(--shadow-tertiary);
   z-index: 50;
   display: flex;
   flex-direction: column;
+  overflow-y: auto;
 }
 
-/* Decorative gradient overlay */
+/* Animated gradient overlay with shimmer */
 .teacher-sidebar::before {
   content: '';
   position: absolute;
@@ -26,17 +26,42 @@
   right: 0;
   bottom: 0;
   background: 
-    radial-gradient(circle at 0% 0%, rgba(102, 126, 234, 0.15) 0%, transparent 50%),
-    radial-gradient(circle at 100% 100%, rgba(118, 75, 162, 0.15) 0%, transparent 50%);
+    radial-gradient(circle at 0% 0%, rgba(102, 126, 234, 0.2) 0%, transparent 50%),
+    radial-gradient(circle at 100% 100%, rgba(118, 75, 162, 0.2) 0%, transparent 50%),
+    linear-gradient(180deg, transparent 0%, rgba(102, 126, 234, 0.03) 100%);
   pointer-events: none;
+  animation: sidebarShimmer 8s ease-in-out infinite;
+}
+
+@keyframes sidebarShimmer {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+/* Decorative top accent line */
+.teacher-sidebar::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #667eea, #764ba2, #667eea);
+  background-size: 200% 100%;
+  animation: gradientFlow 3s linear infinite;
+}
+
+@keyframes gradientFlow {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 200% 50%; }
 }
 
 /* ================= LOGO ================= */
 .teacher-sidebar .logo {
-  font-size: 20px;
+  font-size: 24px;
   font-weight: 800;
-  margin-bottom: 20px;
-  padding-bottom: 15px;
+  margin-bottom: 45px;
+  padding-bottom: 25px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   display: flex;
   align-items: center;
@@ -50,28 +75,56 @@
 
 .teacher-sidebar .logo::before {
   content: '👨‍🏫';
-  font-size: 28px;
+  font-size: 32px;
   -webkit-text-fill-color: initial;
   background: transparent;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+/* Logo glow effect */
+.teacher-sidebar .logo::after {
+  content: '';
+  position: absolute;
+  left: -10px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 4px;
+  height: 30px;
+  background: var(--gradient-primary);
+  border-radius: 2px;
+  box-shadow: 0 0 15px rgba(102, 126, 234, 0.5);
 }
 
 /* ================= WELCOME ================= */
 .teacher-sidebar .welcome {
-  margin-bottom: 20px;
+  margin-bottom: 40px;
   color: #9ca3af;
   font-size: 14px;
   line-height: 1.6;
-  padding: 12px;
+  padding: 20px;
   background: rgba(255, 255, 255, 0.03);
-  border-radius: 12px;
+  border-radius: 16px;
   border: 1px solid rgba(255, 255, 255, 0.05);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Subtle inner glow */
+.teacher-sidebar .welcome::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
 }
 
 .teacher-sidebar .welcome strong {
   color: #ffffff;
   font-size: 18px;
   display: block;
-  margin-bottom: 4px;
+  margin-bottom: 8px;
   background: var(--gradient-primary);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -82,28 +135,28 @@
 .teacher-sidebar nav {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 10px;
   flex: 1;
-  overflow-y: auto;
 }
 
-.teacher-sidebar a {
+.teacher-sidebar .nav-item {
   text-decoration: none;
   color: #d1d5db;
-  padding: 12px 16px;
-  border-radius: 10px;
+  padding: 16px 20px;
+  border-radius: 14px;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   font-weight: 500;
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 14px;
   position: relative;
   overflow: hidden;
-  font-size: 16px;
+  font-size: 15px;
+  border: 1px solid transparent;
 }
 
 /* Gradient background on hover */
-.teacher-sidebar a::before {
+.teacher-sidebar .nav-item::before {
   content: '';
   position: absolute;
   left: 0;
@@ -112,48 +165,70 @@
   height: 100%;
   background: var(--gradient-primary);
   transition: width 0.3s ease;
-  border-radius: 10px;
+  border-radius: 14px;
   opacity: 0.15;
 }
 
-.teacher-sidebar a:hover {
-  color: #ffffff;
-  transform: translateX(5px);
-}
-
-.teacher-sidebar a:hover::before {
-  width: 100%;
-}
-
-.teacher-sidebar a.active {
-  background: var(--gradient-primary);
-  color: white;
-  box-shadow: 0 8px 25px var(--shadow-primary);
-  transform: translateX(5px);
-}
-
-.teacher-sidebar a span {
+/* Icon background circle */
+.teacher-sidebar .nav-item .nav-icon {
   font-size: 20px;
   position: relative;
   z-index: 1;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+  transition: all 0.3s ease;
+}
+
+.teacher-sidebar .nav-item:hover {
+  color: #ffffff;
+  transform: translateX(5px);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.teacher-sidebar .nav-item:hover::before {
+  width: 100%;
+}
+
+.teacher-sidebar .nav-item:hover .nav-icon {
+  background: rgba(255, 255, 255, 0.15);
+  transform: scale(1.1);
+}
+
+.teacher-sidebar .nav-item.active {
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.2) 0%, rgba(118, 75, 162, 0.2) 100%);
+  color: white;
+  box-shadow: 0 8px 25px var(--shadow-primary);
+  transform: translateX(5px);
+  border-color: rgba(102, 126, 234, 0.3);
+}
+
+.teacher-sidebar .nav-item.active .nav-icon {
+  background: var(--gradient-primary);
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
 }
 
 /* ================= ICONS FOR NAV ================= */
-.teacher-sidebar nav a:nth-child(1)::after { content: '🏠'; margin-left: auto; }
-.teacher-sidebar nav a:nth-child(2)::after { content: '📊'; margin-left: auto; }
-.teacher-sidebar nav a:nth-child(3)::after { content: '✅'; margin-left: auto; }
-.teacher-sidebar nav a:nth-child(4)::after { content: '⏳'; margin-left: auto; }
-.teacher-sidebar nav a:nth-child(5)::after { content: '📞'; margin-left: auto; }
+.teacher-sidebar nav .nav-item:nth-child(1)::after { content: '🏠'; margin-left: auto; font-size: 18px; opacity: 0.7; }
+.teacher-sidebar nav .nav-item:nth-child(2)::after { content: '📊'; margin-left: auto; font-size: 18px; opacity: 0.7; }
+.teacher-sidebar nav .nav-item:nth-child(3)::after { content: '✅'; margin-left: auto; font-size: 18px; opacity: 0.7; }
+.teacher-sidebar nav .nav-item:nth-child(4)::after { content: '⏳'; margin-left: auto; font-size: 18px; opacity: 0.7; }
+.teacher-sidebar nav .nav-item:nth-child(5)::after { content: '📝'; margin-left: auto; font-size: 18px; opacity: 0.7; }
+.teacher-sidebar nav .nav-item:nth-child(6)::after { content: '📩'; margin-left: auto; font-size: 18px; opacity: 0.7; }
 
 /* ================= LOGOUT BUTTON ================= */
 .teacher-sidebar .logout-btn {
-  margin-top: 15px;
+  margin-top: auto;
   width: 100%;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   border: none;
-  padding: 14px;
+  padding: 16px;
   color: white;
-  border-radius: 10px;
+  border-radius: 14px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -164,9 +239,10 @@
   font-size: 15px;
   position: relative;
   overflow: hidden;
-  flex-shrink: 0;
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
+/* Shine effect */
 .teacher-sidebar .logout-btn::before {
   content: '';
   position: absolute;
@@ -180,8 +256,9 @@
 
 .teacher-sidebar .logout-btn:hover {
   background: var(--gradient-hover);
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px var(--shadow-primary);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px var(--shadow-primary);
+  border-color: rgba(255, 255, 255, 0.2);
 }
 
 .teacher-sidebar .logout-btn:hover::before {
@@ -192,18 +269,22 @@
 @media (max-width: 1024px) {
   .teacher-sidebar {
     width: 90px;
-    padding: 15px 10px;
+    padding: 25px 12px;
   }
   
   .teacher-sidebar .logo {
     font-size: 0;
     justify-content: center;
-    padding-bottom: 10px;
-    margin-bottom: 10px;
+    padding-bottom: 15px;
+    margin-bottom: 30px;
   }
   
   .teacher-sidebar .logo::before {
-    font-size: 28px;
+    font-size: 36px;
+  }
+  
+  .teacher-sidebar .logo::after {
+    display: none;
   }
   
   .teacher-sidebar .welcome {
@@ -211,33 +292,33 @@
   }
   
   .teacher-sidebar nav {
-    gap: 4px;
+    gap: 8px;
   }
   
-  .teacher-sidebar a {
+  .teacher-sidebar .nav-item {
     justify-content: center;
-    padding: 12px;
+    padding: 16px;
     font-size: 0;
   }
   
-  .teacher-sidebar a::after {
-    font-size: 18px;
+  .teacher-sidebar .nav-item .nav-icon {
+    width: 44px;
+    height: 44px;
+    font-size: 22px;
   }
   
-  .teacher-sidebar a:hover,
-  .teacher-sidebar a.active {
+  .teacher-sidebar .nav-item::after {
+    display: none;
+  }
+  
+  .teacher-sidebar .nav-item:hover,
+  .teacher-sidebar .nav-item.active {
     transform: none;
   }
   
   .teacher-sidebar .logout-btn {
-    padding: 12px;
+    padding: 16px;
     font-size: 0;
-    margin-top: 10px;
-  }
-  
-  .teacher-sidebar .logout-btn::after {
-    content: '🚪';
-    font-size: 18px;
   }
 }
 

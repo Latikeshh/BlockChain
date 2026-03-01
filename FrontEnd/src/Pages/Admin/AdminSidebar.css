@@ -3,174 +3,254 @@
 
 /* ================= SIDEBAR ================= */
 .admin-sidebar {
-  width: 280px;
+  width: 300px;
   height: 100vh;
   position: fixed;
   left: 0;
-  top: 0;
-  background: linear-gradient(180deg, #1e3a8a 0%, #4f46e5 100%);
+  background: linear-gradient(180deg, #1a1a2e 0%, #16213e 100%);
   color: white;
-  padding: 20px;
-  box-shadow: 4px 0 30px var(--shadow-tertiary);
-  z-index: 50;
+  padding: 25px 20px;
+  box-shadow: 4px 0 30px rgba(0, 0, 0, 0.3);
+  z-index: 100;
   display: flex;
   flex-direction: column;
+  overflow-y: auto;
 }
 
-/* Decorative gradient overlay */
+/* Animated gradient overlay with shimmer */
 .admin-sidebar::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 300px;
+  height: 100vh;
+  background: 
+    radial-gradient(circle at 0% 0%, rgba(102, 126, 234, 0.3) 0%, transparent 50%),
+    radial-gradient(circle at 100% 100%, rgba(118, 75, 162, 0.3) 0%, transparent 50%),
+    linear-gradient(180deg, transparent 0%, rgba(102, 126, 234, 0.05) 100%);
+  pointer-events: none;
+  animation: sidebarShimmer 8s ease-in-out infinite;
+  z-index: -1;
+}
+
+@keyframes sidebarShimmer {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+/* Decorative top accent line */
+.admin-sidebar::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 300px;
+  height: 4px;
+  background: linear-gradient(90deg, #667eea, #764ba2, #667eea);
+  background-size: 200% 100%;
+  animation: gradientFlow 3s linear infinite;
+  z-index: 101;
+}
+
+@keyframes gradientFlow {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 200% 50%; }
+}
+
+/* ================= ADMIN HEADER ================= */
+.admin-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 35px;
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.2) 0%, rgba(118, 75, 162, 0.2) 100%);
+  border-radius: 16px;
+  margin-bottom: 30px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.admin-header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+}
+
+.admin-avatar {
+  width: 56px;
+  height: 56px;
+  min-width: 56px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+  position: relative;
+  overflow: hidden;
+}
+
+.admin-avatar::after {
   content: '';
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: 
-    radial-gradient(circle at 0% 0%, rgba(102, 126, 234, 0.15) 0%, transparent 50%),
-    radial-gradient(circle at 100% 100%, rgba(118, 75, 162, 0.15) 0%, transparent 50%);
-  pointer-events: none;
+  background: linear-gradient(135deg, rgba(255,255,255,0.2) 0%, transparent 50%);
 }
 
-/* ================= LOGO ================= */
-.admin-sidebar .logo {
-  font-size: 20px;
-  font-weight: 800;
-  margin-bottom: 20px;
-  padding-bottom: 15px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+.admin-info {
   display: flex;
-  align-items: center;
-  gap: 12px;
-  position: relative;
-  background: var(--gradient-primary);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+  flex: 1;
 }
 
-.admin-sidebar .logo::before {
-  content: '⚙️';
-  font-size: 28px;
-  -webkit-text-fill-color: initial;
-  background: transparent;
-}
-
-/* ================= WELCOME ================= */
-.admin-sidebar .welcome {
-  margin-bottom: 20px;
-  color: #9ca3af;
-  font-size: 14px;
-  line-height: 1.6;
-  padding: 12px;
-  background: rgba(255, 255, 255, 0.03);
-  border-radius: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-.admin-sidebar .welcome strong {
-  color: #ffffff;
+.admin-name {
   font-size: 18px;
-  display: block;
-  margin-bottom: 4px;
-  background: var(--gradient-primary);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  font-weight: 700;
+  margin: 0;
+  color: #ffffff;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.admin-role {
+  font-size: 12px;
+  color: #a5b4fc;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
 /* ================= NAVIGATION ================= */
 .admin-sidebar nav {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 8px;
   flex: 1;
-  overflow-y: auto;
 }
 
-.admin-sidebar a {
+.admin-sidebar .nav-item {
   text-decoration: none;
   color: #d1d5db;
-  padding: 12px 16px;
-  border-radius: 10px;
+  padding: 14px 18px;
+  border-radius: 12px;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   font-weight: 500;
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 14px;
   position: relative;
   overflow: hidden;
-  font-size: 16px;
+  font-size: 15px;
+  border: 1px solid transparent;
 }
 
 /* Gradient background on hover */
-.admin-sidebar a::before {
+.admin-sidebar .nav-item::before {
   content: '';
   position: absolute;
   left: 0;
   top: 0;
   width: 0;
   height: 100%;
-  background: var(--gradient-primary);
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.3) 0%, rgba(118, 75, 162, 0.3) 100%);
   transition: width 0.3s ease;
-  border-radius: 10px;
-  opacity: 0.15;
+  border-radius: 12px;
+  opacity: 0;
 }
 
-.admin-sidebar a:hover {
-  color: #ffffff;
-  transform: translateX(5px);
-}
-
-.admin-sidebar a:hover::before {
-  width: 100%;
-}
-
-.admin-sidebar a.active {
-  background: var(--gradient-primary);
-  color: white;
-  box-shadow: 0 8px 25px var(--shadow-primary);
-  transform: translateX(5px);
-}
-
-.admin-sidebar a span {
+/* Icon background circle */
+.admin-sidebar .nav-item .nav-icon {
   font-size: 20px;
+  position: relative;
+  z-index: 1;
+  width: 40px;
+  height: 40px;
+  min-width: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  transition: all 0.3s ease;
+}
+
+.admin-sidebar .nav-item .nav-text {
   position: relative;
   z-index: 1;
 }
 
-/* ================= ICONS FOR NAV ================= */
-.admin-sidebar nav a:nth-child(1)::after { content: '🏠'; margin-left: auto; }
-.admin-sidebar nav a:nth-child(2)::after { content: '📊'; margin-left: auto; }
-.admin-sidebar nav a:nth-child(3)::after { content: '➕'; margin-left: auto; }
-.admin-sidebar nav a:nth-child(4)::after { content: '👥'; margin-left: auto; }
-.admin-sidebar nav a:nth-child(5)::after { content: '👨‍🎓'; margin-left: auto; }
-.admin-sidebar nav a:nth-child(6)::after { content: '✅'; margin-left: auto; }
-.admin-sidebar nav a:nth-child(7)::after { content: '⏳'; margin-left: auto; }
-.admin-sidebar nav a:nth-child(8)::after { content: '⚙️'; margin-left: auto; }
-.admin-sidebar nav a:nth-child(9)::after { content: '📩'; margin-left: auto; }
+.admin-sidebar .nav-item:hover {
+  color: #ffffff;
+  transform: translateX(5px);
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+.admin-sidebar .nav-item:hover::before {
+  width: 100%;
+  opacity: 1;
+}
+
+.admin-sidebar .nav-item:hover .nav-icon {
+  background: rgba(255, 255, 255, 0.2);
+  transform: scale(1.1);
+}
+
+.admin-sidebar .nav-item.active {
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.3) 0%, rgba(118, 75, 162, 0.3) 100%);
+  color: white;
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+  transform: translateX(5px);
+  border-color: rgba(102, 126, 234, 0.4);
+}
+
+.admin-sidebar .nav-item.active .nav-icon {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.5);
+}
+
+/* ================= SIDEBAR FOOTER ================= */
+.sidebar-footer {
+  margin-top: auto;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
 
 /* ================= LOGOUT BUTTON ================= */
 .admin-sidebar .logout-btn {
-  margin-top: 15px;
   width: 100%;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  border: none;
-  padding: 14px;
-  color: white;
-  border-radius: 10px;
+  background: linear-gradient(135deg, rgba(239, 68, 68, 0.2) 0%, rgba(220, 38, 38, 0.2) 100%);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  padding: 14px 18px;
+  color: #fca5a5;
+  border-radius: 12px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
+  gap: 12px;
   font-size: 15px;
   position: relative;
   overflow: hidden;
-  flex-shrink: 0;
 }
 
+/* Shine effect */
 .admin-sidebar .logout-btn::before {
   content: '';
   position: absolute;
@@ -178,70 +258,110 @@
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
   transition: left 0.5s ease;
 }
 
+.admin-sidebar .logout-icon {
+  font-size: 18px;
+  width: 36px;
+  height: 36px;
+  min-width: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(239, 68, 68, 0.2);
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.admin-sidebar .logout-text {
+  position: relative;
+  z-index: 1;
+}
+
 .admin-sidebar .logout-btn:hover {
-  background: var(--gradient-hover);
+  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+  color: white;
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px var(--shadow-primary);
+  box-shadow: 0 8px 20px rgba(239, 68, 68, 0.4);
+  border-color: rgba(239, 68, 68, 0.5);
 }
 
 .admin-sidebar .logout-btn:hover::before {
   left: 100%;
 }
 
+.admin-sidebar .logout-btn:hover .logout-icon {
+  background: rgba(255, 255, 255, 0.25);
+  transform: scale(1.1);
+}
+
 /* ================= RESPONSIVE ================= */
 @media (max-width: 1024px) {
   .admin-sidebar {
     width: 90px;
+    padding: 20px 12px;
+  }
+  
+  .admin-header {
     padding: 15px 10px;
-  }
-  
-  .admin-sidebar .logo {
-    font-size: 0;
     justify-content: center;
-    padding-bottom: 10px;
-    margin-bottom: 10px;
   }
   
-  .admin-sidebar .logo::before {
-    font-size: 28px;
+  .admin-avatar {
+    width: 48px;
+    height: 48px;
+    min-width: 48px;
+    font-size: 24px;
   }
   
-  .admin-sidebar .welcome {
+  .admin-info {
     display: none;
   }
   
   .admin-sidebar nav {
-    gap: 4px;
+    gap: 6px;
   }
   
-  .admin-sidebar a {
+  .admin-sidebar .nav-item {
     justify-content: center;
-    padding: 12px;
-    font-size: 0;
+    padding: 14px;
   }
   
-  .admin-sidebar a::after {
-    font-size: 18px;
+  .admin-sidebar .nav-item .nav-icon {
+    width: 44px;
+    height: 44px;
+    min-width: 44px;
+    font-size: 22px;
   }
   
-  .admin-sidebar a:hover,
-  .admin-sidebar a.active {
+  .admin-sidebar .nav-item .nav-text {
+    display: none;
+  }
+  
+  .admin-sidebar .nav-item:hover,
+  .admin-sidebar .nav-item.active {
     transform: none;
   }
   
-  .admin-sidebar .logout-btn {
-    padding: 12px;
-    font-size: 0;
-    margin-top: 10px;
+  .sidebar-footer {
+    padding-top: 15px;
   }
   
-  .admin-sidebar .logout-btn::after {
-    content: '🚪';
-    font-size: 18px;
+  .admin-sidebar .logout-btn {
+    padding: 14px;
+    justify-content: center;
+  }
+  
+  .admin-sidebar .logout-icon {
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+  }
+  
+  .admin-sidebar .logout-text {
+    display: none;
   }
 }
 

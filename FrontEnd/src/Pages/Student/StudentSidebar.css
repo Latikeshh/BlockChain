@@ -217,7 +217,7 @@
 .student-sidebar nav a:nth-child(2)::after { content: '📊'; margin-left: auto; font-size: 18px; opacity: 0.7; }
 .student-sidebar nav a:nth-child(3)::after { content: '👤'; margin-left: auto; font-size: 18px; opacity: 0.7; }
 .student-sidebar nav a:nth-child(4)::after { content: '✅'; margin-left: auto; font-size: 18px; opacity: 0.7; }
-.student-sidebar nav a:nth-child(5)::after { content: '📩'; margin-left: auto; font-size: 18px; opacity: 0.7; }
+.student-sidebar nav a:nth-child(5)::after { content: '📝'; margin-left: auto; font-size: 18px; opacity: 0.7; }
 
 /* ================= LOGOUT BUTTON ================= */
 .student-sidebar .logout-btn {
@@ -250,19 +250,7 @@
   width: 100%;
   height: 100%;
   background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-  transition: left 0.5s ease
-}
-
- .Iconlogout-btn span {
-  font-size: 18px;
-  width: 32px;
-  height: 32px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(255, 255, 255, 0.15);
-  border-radius: 8px;
-  transition: all 0.3s ease;
+  transition: left 0.5s ease;
 }
 
 .student-sidebar .logout-btn:hover {
@@ -274,11 +262,6 @@
 
 .student-sidebar .logout-btn:hover::before {
   left: 100%;
-}
-
-.student-sidebar .logout-btn:hover span {
-  background: rgba(255, 255, 255, 0.25);
-  transform: scale(1.1) rotate(-5deg);
 }
 
 /* ================= SIDEBAR FOOTER ================= */
@@ -348,12 +331,6 @@
   .student-sidebar .logout-btn {
     padding: 16px;
     font-size: 0;
-  }
-  
-  .student-sidebar .logout-btn span {
-    width: 40px;
-    height: 40px;
-    font-size: 20px;
   }
   
   .student-sidebar .sidebar-footer {
