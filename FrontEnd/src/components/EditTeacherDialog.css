@@ -1,0 +1,196 @@
+/* Import CSS Variables */
+@import url('../Variables.css');
+
+/* Modal Overlay */
+.edit-teacher-modal .modal-content {
+  border: none;
+  border-radius: 16px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+}
+
+/* Modal Header */
+.edit-teacher-modal .modal-header-themed {
+  background: var(--gradient-primary);
+  color: var(--text-light);
+  border-radius: 16px 16px 0 0;
+  padding: 20px 24px;
+  border: none;
+}
+
+.edit-teacher-modal .modal-header-themed .modal-title {
+  font-weight: 600;
+  font-size: 18px;
+}
+
+.edit-teacher-modal .modal-header-themed .btn-close {
+  filter: invert(1);
+  opacity: 0.8;
+}
+
+.edit-teacher-modal .modal-header-themed .btn-close:hover {
+  opacity: 1;
+}
+
+/* Modal Body */
+.edit-teacher-modal .modal-body {
+  padding: 24px;
+}
+
+/* Form Content */
+.edit-form-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+@media (max-width: 768px) {
+  .edit-form-content {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Form Section */
+.form-section {
+  background: var(--bg-white);
+  border-radius: 12px;
+  padding: 20px;
+  border: 1px solid var(--border-color);
+}
+
+.form-section .section-title {
+  margin: 0 0 16px 0;
+  font-size: 16px;
+  color: var(--text-primary);
+  font-weight: 600;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 8px;
+}
+
+/* Form Group */
+.form-group {
+  margin-bottom: 16px;
+}
+
+.form-label-custom {
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+  display: block;
+  font-size: 14px;
+}
+
+.optional-label {
+  font-weight: 400;
+  color: var(--text-muted);
+  font-size: 12px;
+}
+
+.form-control-custom {
+  border-radius: 10px;
+  padding: 12px 16px;
+  border: 2px solid var(--border-light);
+  background-color: var(--bg-light);
+  transition: all 0.3s ease;
+  width: 100%;
+  font-size: 15px;
+}
+
+.form-control-custom:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px var(--shadow-primary-light);
+  background-color: var(--bg-white);
+}
+
+.form-control-custom::placeholder {
+  color: var(--text-muted);
+}
+
+/* Permission Grid */
+.permission-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+
+.permission-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  border: 2px solid var(--border-light);
+  border-radius: 10px;
+  background: var(--bg-light);
+  font-size: 14px;
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.permission-item:hover {
+  border-color: var(--color-primary);
+  background: var(--bg-lighter);
+}
+
+.permission-item input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  min-width: 20px;
+  accent-color: var(--color-primary);
+  cursor: pointer;
+  margin: 0;
+}
+
+.permission-item label {
+  margin: 0;
+  cursor: pointer;
+  flex: 1;
+  font-weight: 500;
+}
+
+/* Modal Footer */
+.edit-teacher-modal .modal-footer {
+  padding: 16px 24px;
+  border-top: 1px solid var(--border-color);
+  background: var(--bg-main);
+  border-radius: 0 0 16px 16px;
+}
+
+/* Buttons */
+.btn-cancel {
+  background: var(--bg-light);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+  padding: 10px 24px;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-cancel:hover {
+  background: var(--bg-lighter);
+  border-color: var(--border-hover);
+}
+
+.btn-save {
+  background: var(--btn-gradient);
+  color: var(--text-light);
+  border: none;
+  padding: 10px 28px;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px var(--shadow-primary);
+}
+
+.btn-save:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px var(--shadow-primary);
+}
+
+.btn-save:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}

@@ -1,0 +1,108 @@
+@import url('../../Variables.css');
+
+.teacher-req-layout {
+  display: flex;
+  min-height: 100vh;
+  /* brighter blue gradient similar to dashboard */
+  background: linear-gradient(135deg, #e0e7ff 0%, #c7d2fe 100%);
+}
+
+.teacher-req-content {
+  flex: 1;
+  margin-left: 280px;
+  padding: 30px 40px;
+  min-height: calc(100vh - 68px);
+  overflow-x: hidden;
+}
+
+.teacher-req-container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.teacher-req-container h2 {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.req-list {
+  list-style: none;
+  padding: 0;
+}
+
+.req-item {
+  background: #fff;
+  border-left: 4px solid #ccc;
+  padding: 16px;
+  margin-bottom: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.req-item.approved { border-color: #10b981; }
+.req-item.rejected { border-color: #ef4444; }
+.req-item.pending { border-color: #f59e0b; }
+
+.req-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.student-info {
+  font-weight: 600;
+  color: #374151;
+}
+
+.category {
+  font-style: italic;
+  color: #6b7280;
+}
+
+.details {
+  color: #1f2937;
+}
+
+.req-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.status-tag {
+  text-transform: capitalize;
+  padding: 2px 6px;
+  font-size: 12px;
+  border-radius: 4px;
+}
+
+.status-tag.pending { background: #f59e0b22; color: #92400e; }
+.status-tag.approved { background: #10b98122; color: #047857; }
+.status-tag.rejected { background: #ef444422; color: #b91c1c; }
+
+.approve-btn,
+.reject-btn {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.approve-btn { background: #10b981; color: #fff; }
+.reject-btn { background: #ef4444; color: #fff; }
+
+@media (max-width: 768px) {
+  .teacher-req-content { margin-left: 0; padding: 20px; }
+  .req-item { flex-direction: column; align-items: flex-start; }
+  .req-actions { margin-top: 12px; }
+}

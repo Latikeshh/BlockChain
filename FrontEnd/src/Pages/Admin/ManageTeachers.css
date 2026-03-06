@@ -1,0 +1,338 @@
+/* Import CSS Variables */
+@import url('../../Variables.css');
+
+/* ================= PAGE CONTAINER ================= */
+.teacher-page-container {
+  padding: 30px;
+  background: linear-gradient(135deg, #ccfbf1 0%, #cffafe 100%);
+  min-height: 100vh;
+}
+
+/* ================= HEADER SECTION ================= */
+.dashboard-header {
+  background: linear-gradient(135deg, #0d9488 0%, #0891b2 50%, #6366f1 100%);
+  border-radius: 20px;
+  padding: 35px 40px;
+  margin-bottom: 35px;
+  color: white;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 10px 40px rgba(13, 148, 136, 0.3);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dashboard-header::before {
+  content: '';
+  position: absolute;
+  top: -60%;
+  right: -15%;
+  width: 350px;
+  height: 350px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+}
+
+.dashboard-header::after {
+  content: '';
+  position: absolute;
+  bottom: -40%;
+  left: -10%;
+  width: 250px;
+  height: 250px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 50%;
+}
+
+.header-content {
+  position: relative;
+  z-index: 1;
+}
+
+.dashboard-title {
+  font-size: 32px;
+  font-weight: 800;
+  margin: 0 0 10px 0;
+  color: white;
+}
+
+.header-subtitle {
+  font-size: 16px;
+  opacity: 0.95;
+  margin: 0;
+}
+
+/* ================= SEARCH INPUT ================= */
+.search-input {
+  position: relative;
+  z-index: 1;
+  padding: 14px 20px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 12px;
+  width: 300px;
+  font-size: 15px;
+  transition: all 0.3s ease;
+  background: rgba(255, 255, 255, 0.95);
+  color: var(--text-primary);
+}
+
+.search-input::placeholder {
+  color: #9ca3af;
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: white;
+  box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.2), 0 4px 12px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+/* ================= TABLE CARD ================= */
+.teacher-table-card {
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.table-card-body {
+  padding: 0;
+}
+
+/* ================= TABLE ================= */
+.teacher-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.teacher-table thead {
+  background: linear-gradient(135deg, #0d9488 0%, #0891b2 100%);
+}
+
+.teacher-table th {
+  padding: 20px 24px;
+  text-align: left;
+  font-weight: 700;
+  color: white;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+}
+
+.teacher-table td {
+  padding: 20px 24px;
+  border-bottom: 1px solid #f3f4f6;
+  color: #374151;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.teacher-table tbody tr {
+  transition: all 0.2s ease;
+}
+
+.teacher-table tbody tr:hover {
+  background: linear-gradient(135deg, #ccfbf1 0%, #cffafe 100%);
+  transform: translateX(2px);
+}
+
+.teacher-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* Row number */
+.teacher-table td:first-child {
+  color: #9ca3af;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.teacher-name {
+  font-weight: 600;
+  color: #1f2937;
+}
+
+/* ================= ACTIONS CELL ================= */
+.actions-cell {
+  display: flex;
+  gap: 10px;
+}
+
+/* Edit Button */
+.btn-edit {
+  padding: 10px 20px;
+  background: linear-gradient(135deg, #0d9488 0%, #0891b2 100%);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(13, 148, 136, 0.3);
+}
+
+.btn-edit:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(13, 148, 136, 0.4);
+}
+
+/* Delete Button */
+.btn-delete {
+  padding: 10px 20px;
+  background: transparent;
+  color: #ef4444;
+  border: 2px solid #ef4444;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.btn-delete:hover {
+  background: #ef4444;
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(239, 68, 68, 0.3);
+}
+
+/* ================= LOADING STATE ================= */
+.loading-state {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 80px 40px;
+}
+
+.loading-state .spinner-border {
+  width: 3rem;
+  height: 3rem;
+  border-width: 3px;
+  color: #0d9488;
+}
+
+/* ================= EMPTY STATE ================= */
+.empty-state {
+  text-align: center;
+  padding: 80px 40px;
+  color: #9ca3af;
+}
+
+.empty-icon {
+  font-size: 64px;
+  display: block;
+  margin-bottom: 16px;
+  opacity: 0.5;
+}
+
+.empty-state p {
+  font-size: 18px;
+  font-weight: 500;
+  margin: 0;
+}
+
+/* ================= ANIMATION ================= */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.teacher-table tbody tr {
+  animation: fadeInUp 0.3s ease forwards;
+}
+
+.teacher-table tbody tr:nth-child(1) { animation-delay: 0.02s; }
+.teacher-table tbody tr:nth-child(2) { animation-delay: 0.04s; }
+.teacher-table tbody tr:nth-child(3) { animation-delay: 0.06s; }
+.teacher-table tbody tr:nth-child(4) { animation-delay: 0.08s; }
+.teacher-table tbody tr:nth-child(5) { animation-delay: 0.1s; }
+.teacher-table tbody tr:nth-child(6) { animation-delay: 0.12s; }
+.teacher-table tbody tr:nth-child(7) { animation-delay: 0.14s; }
+.teacher-table tbody tr:nth-child(8) { animation-delay: 0.16s; }
+.teacher-table tbody tr:nth-child(9) { animation-delay: 0.18s; }
+.teacher-table tbody tr:nth-child(10) { animation-delay: 0.2s; }
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 1024px) {
+  .dashboard-header {
+    flex-direction: column;
+    gap: 20px;
+    align-items: flex-start;
+    padding: 30px;
+  }
+  
+  .search-input {
+    width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .teacher-page-container {
+    padding: 20px;
+  }
+  
+  .dashboard-header {
+    padding: 25px;
+  }
+  
+  .dashboard-title {
+    font-size: 24px;
+  }
+  
+  .teacher-table {
+    font-size: 14px;
+  }
+  
+  .teacher-table th,
+  .teacher-table td {
+    padding: 16px 12px;
+  }
+  
+  .actions-cell {
+    flex-direction: column;
+    gap: 6px;
+  }
+  
+  .btn-edit,
+  .btn-delete {
+    padding: 8px 14px;
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .teacher-page-container {
+    padding: 15px;
+  }
+  
+  .dashboard-header {
+    padding: 20px;
+  }
+  
+  .dashboard-title {
+    font-size: 20px;
+  }
+  
+  .header-subtitle {
+    font-size: 14px;
+  }
+  
+  .teacher-table th,
+  .teacher-table td {
+    padding: 12px 8px;
+    font-size: 13px;
+  }
+  
+  .teacher-name {
+    font-weight: 500;
+  }
+}

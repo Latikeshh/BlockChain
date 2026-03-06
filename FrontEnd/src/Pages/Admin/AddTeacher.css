@@ -1,0 +1,251 @@
+/* Import CSS Variables */
+@import url('../../Variables.css');
+
+/* ================= PAGE CONTAINER ================= */
+.add-teacher-page {
+  padding: 30px;
+  background: linear-gradient(135deg, #ccfbf1 0%, #cffafe 100%);
+  min-height: 100vh;
+}
+
+/* ================= HEADER SECTION ================= */
+.add-teacher-header {
+  background: linear-gradient(135deg, #0d9488 0%, #0891b2 50%, #6366f1 100%);
+  border-radius: 20px;
+  padding: 35px 40px;
+  margin-bottom: 35px;
+  color: white;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 10px 40px rgba(13, 148, 136, 0.3);
+}
+
+.add-teacher-header::before {
+  content: '';
+  position: absolute;
+  top: -60%;
+  right: -15%;
+  width: 350px;
+  height: 350px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+}
+
+.add-teacher-header::after {
+  content: '';
+  position: absolute;
+  bottom: -40%;
+  left: -10%;
+  width: 250px;
+  height: 250px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 50%;
+}
+
+.add-teacher-header-content {
+  position: relative;
+  z-index: 1;
+}
+
+.add-teacher-title {
+  font-size: 32px;
+  font-weight: 800;
+  margin: 0 0 10px 0;
+  color: white;
+}
+
+.add-teacher-subtitle {
+  font-size: 16px;
+  opacity: 0.95;
+  margin: 0;
+}
+
+/* ================= FORM CONTENT ================= */
+.add-teacher-content {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 24px;
+}
+
+/* ================= FORM CARD ================= */
+.add-teacher-card {
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.add-teacher-card-body {
+  padding: 30px;
+}
+
+/* ================= FORM STYLES ================= */
+.add-teacher-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.add-teacher-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.add-teacher-label {
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+  display: block;
+  font-size: 14px;
+}
+
+.add-teacher-input {
+  border-radius: 10px;
+  padding: 12px 16px;
+  border: 2px solid var(--border-light);
+  background-color: var(--bg-light);
+  transition: all 0.3s ease;
+  width: 100%;
+  font-size: 15px;
+}
+
+.add-teacher-input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px var(--shadow-primary-light);
+  background-color: var(--bg-white);
+}
+
+.add-teacher-input::placeholder {
+  color: var(--text-muted);
+}
+
+/* ================= PERMISSIONS ================= */
+.add-teacher-permission-group {
+  margin-bottom: 20px;
+}
+
+.add-teacher-permission-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+
+/* EXACT SAME STYLE AS EditTeacherDialog */
+.add-teacher-permission-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  border: 2px solid var(--border-light);
+  border-radius: 10px;
+  background: var(--bg-light);
+  font-size: 14px;
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.add-teacher-permission-item:hover {
+  border-color: var(--color-primary);
+  background: var(--bg-lighter);
+}
+
+.add-teacher-permission-item input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  min-width: 20px;
+  accent-color: var(--color-primary);
+  cursor: pointer;
+  margin: 0;
+}
+
+.add-teacher-permission-item span {
+  flex: 1;
+  font-weight: 500;
+}
+
+/* ================= SUBMIT BUTTON ================= */
+.add-teacher-submit {
+  background: var(--btn-gradient);
+  border: none;
+  border-radius: 12px;
+  padding: 14px 32px;
+  font-weight: 600;
+  margin-top: 10px;
+  color: var(--text-light);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 15px;
+  box-shadow: 0 4px 12px var(--shadow-primary);
+}
+
+.add-teacher-submit:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px var(--shadow-primary);
+}
+
+.add-teacher-submit:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+/* ================= INFO CARD ================= */
+.add-teacher-info-card {
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  height: fit-content;
+}
+
+.add-teacher-info-body {
+  padding: 30px;
+}
+
+.add-teacher-info-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--color-primary);
+  margin-bottom: 15px;
+}
+
+.add-teacher-info-text {
+  color: var(--text-muted);
+  margin-bottom: 15px;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 1024px) {
+  .add-teacher-content {
+    grid-template-columns: 1fr;
+  }
+
+  .add-teacher-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .add-teacher-page {
+    padding: 20px;
+  }
+
+  .add-teacher-header {
+    padding: 25px;
+  }
+
+  .add-teacher-title {
+    font-size: 24px;
+  }
+
+  .add-teacher-card-body,
+  .add-teacher-info-body {
+    padding: 20px;
+  }
+}

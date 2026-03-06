@@ -1,0 +1,153 @@
+@import url('../Variables.css');
+
+/* styles for student info modal */
+
+/* Form Grid - layout for form fields */
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  align-items: start;
+}
+
+/* Form Group */
+.form-group {
+  margin-bottom: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.form-group.full-width {
+  grid-column: span 3;
+}
+
+.form-group label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: var(--text-primary);
+  font-size: 14px;
+}
+
+/* readonly field styling used in info modal */
+.form-group p {
+  margin: 0;
+  padding: 8px 10px;
+  background: var(--bg-gray);
+  border-radius: 8px;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+/* modal layout cards */
+.modal-section {
+  background: var(--bg-white);
+  border-radius: 12px;
+  padding: 20px 24px;
+  margin-bottom: 20px;
+  box-shadow: var(--shadow-card);
+  border: 1px solid var(--border-color);
+}
+
+.modal-section .section-title {
+  margin: 0 0 16px 0;
+  font-size: 18px;
+  color: var(--text-primary);
+  font-weight: 600;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 8px;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.section-header input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+}
+
+.btn-reject-modal {
+  background: var(--color-danger);
+  color: var(--text-light);
+  padding: 12px 28px;
+  font-size: 14px;
+  border-radius: 12px;
+  font-weight: 700;
+  border: none;
+  margin-right: 12px;
+  transition: background 0.25s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  cursor: pointer;
+}
+
+.btn-reject-modal:hover {
+  background: var(--btn-gradient);
+  transform: translateY(-3px) scale(1.04);
+  box-shadow: 0 8px 24px var(--shadow-accent);
+}
+
+.btn-reject-modal:active {
+  transform: translateY(0) scale(0.98);
+  box-shadow: 0 4px 12px rgba(220,33,33,0.3);
+}
+
+.verify-action {
+  text-align: center;
+  margin-top: 24px;
+}
+
+.verify-action .btn-verify-modal {
+  background: var(--gradient-primary);
+  color: var(--text-light);
+  padding: 14px 32px;
+  font-size: 16px;
+  border-radius: 12px;
+  font-weight: 700;
+  box-shadow: 0 4px 20px var(--shadow-primary);
+  transition: all 0.3s ease;
+  border: none;
+}
+
+.verify-action .btn-verify-modal:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 8px 28px var(--shadow-primary);
+}
+
+.verify-action .btn-verify-modal:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+
+.review-note {
+  text-align: center;
+  color: var(--color-danger);
+  font-size: 14px;
+  margin-top: 8px;
+  font-weight: 600;
+}
+
+.teacher-reject-info {
+  background: var(--bg-lighter);
+  border: 1px solid var(--border-hover);
+  border-radius: 10px;
+  padding: 12px 16px;
+  margin-bottom: 16px;
+  font-size: 14px;
+  color: var(--text-primary);
+}
+.teacher-reject-info p {
+  margin: 0;
+}
+
+/* header theme styling */
+.header-themed {
+  background: var(--gradient-primary);
+  color: var(--text-light);
+}
+.header-themed .modal-title {
+  font-weight: 600;
+}

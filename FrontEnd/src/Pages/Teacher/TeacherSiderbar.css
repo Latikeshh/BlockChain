@@ -1,0 +1,373 @@
+/* Import CSS Variables */
+@import url('../../Variables.css');
+
+/* ================= SIDEBAR ================= */
+.teacher-sidebar {
+  width: 300px;
+  height: 100vh;
+  position: fixed;
+  left: 0;
+  background: linear-gradient(180deg, #0d9488 0%, #0891b2 50%, #6366f1 100%);
+  color: white;
+  padding: 25px 20px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+/* Animated gradient overlay with shimmer */
+.teacher-sidebar::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 300px;
+  height: 100vh;
+  background: 
+    radial-gradient(circle at 0% 0%, rgba(255, 255, 255, 0.3) 0%, transparent 50%),
+    radial-gradient(circle at 100% 100%, rgba(99, 102, 241, 0.4) 0%, transparent 50%),
+    radial-gradient(circle at 50% 50%, rgba(8, 145, 178, 0.3) 0%, transparent 60%),
+    linear-gradient(180deg, transparent 0%, rgba(255, 255, 255, 0.1) 100%);
+  pointer-events: none;
+  animation: sidebarShimmer 6s ease-in-out infinite;
+  z-index: -1;
+}
+
+@keyframes sidebarShimmer {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+/* Decorative top accent line */
+.teacher-sidebar::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 300px;
+  height: 4px;
+  background: linear-gradient(90deg, #2dd4bf, #22d3ee, #818cf8, #a78bfa, #2dd4bf);
+  background-size: 300% 100%;
+  animation: gradientFlow 3s linear infinite;
+  z-index: 101;
+}
+
+@keyframes gradientFlow {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 200% 50%; }
+}
+
+/* ================= TEACHER HEADER ================= */
+.teacher-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 35px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.05) 100%);
+  border-radius: 16px;
+  margin-bottom: 30px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  position: relative;
+  overflow: hidden;
+}
+
+.teacher-header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent);
+}
+
+.teacher-avatar {
+  width: 56px;
+  height: 56px;
+  min-width: 56px;
+  background: linear-gradient(135deg, #2dd4bf 0%, #6366f1 100%);
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  box-shadow: 0 8px 20px rgba(45, 212, 191, 0.4);
+  position: relative;
+  overflow: hidden;
+}
+
+.teacher-avatar::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.3) 0%, transparent 50%);
+}
+
+.teacher-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+  flex: 1;
+}
+
+.teacher-name {
+  font-size: 18px;
+  font-weight: 700;
+  margin: 0;
+  color: #ffffff;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.teacher-role {
+  font-size: 12px;
+  color: #a5f3fc;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* ================= NAVIGATION ================= */
+.teacher-sidebar nav {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+}
+
+.teacher-sidebar .nav-item {
+  text-decoration: none;
+  color: #e0e7ff;
+  padding: 14px 18px;
+  border-radius: 12px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  position: relative;
+  overflow: hidden;
+  font-size: 15px;
+  border: 1px solid transparent;
+}
+
+/* Gradient background on hover */
+.teacher-sidebar .nav-item::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 0;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(45, 212, 191, 0.5) 0%, rgba(99, 102, 241, 0.5) 100%);
+  transition: width 0.3s ease;
+  border-radius: 12px;
+  opacity: 0;
+}
+
+/* Icon background circle */
+.teacher-sidebar .nav-item .nav-icon {
+  font-size: 20px;
+  position: relative;
+  z-index: 1;
+  width: 40px;
+  height: 40px;
+  min-width: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 10px;
+  transition: all 0.3s ease;
+}
+
+.teacher-sidebar .nav-item .nav-text {
+  position: relative;
+  z-index: 1;
+}
+
+.teacher-sidebar .nav-item:hover {
+  color: #ffffff;
+  transform: translateX(5px);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.teacher-sidebar .nav-item:hover::before {
+  width: 100%;
+  opacity: 1;
+}
+
+.teacher-sidebar .nav-item:hover .nav-icon {
+  background: rgba(255, 255, 255, 0.3);
+  transform: scale(1.1);
+}
+
+.teacher-sidebar .nav-item.active {
+  background: linear-gradient(135deg, rgba(45, 212, 191, 0.4) 0%, rgba(99, 102, 241, 0.4) 100%);
+  color: white;
+  box-shadow: 0 8px 25px rgba(45, 212, 191, 0.4);
+  transform: translateX(5px);
+  border-color: rgba(45, 212, 191, 0.5);
+}
+
+.teacher-sidebar .nav-item.active .nav-icon {
+  background: linear-gradient(135deg, #2dd4bf 0%, #6366f1 100%);
+  box-shadow: 0 4px 15px rgba(45, 212, 191, 0.5);
+}
+
+/* ================= SIDEBAR FOOTER ================= */
+.sidebar-footer {
+  margin-top: auto;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+/* ================= LOGOUT BUTTON ================= */
+.teacher-sidebar .logout-btn {
+  width: 100%;
+  background: linear-gradient(135deg, rgba(20, 184, 166, 0.4) 0%, rgba(6, 182, 212, 0.4) 100%);
+  border: 1px solid rgba(45, 212, 191, 0.5);
+  padding: 14px 18px;
+  color: #99f6e4;
+  border-radius: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  font-size: 15px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Shine effect */
+.teacher-sidebar .logout-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+.teacher-sidebar .logout-icon {
+  font-size: 18px;
+  width: 36px;
+  height: 36px;
+  min-width: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(20, 184, 166, 0.5);
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.teacher-sidebar .logout-text {
+  position: relative;
+  z-index: 1;
+}
+
+.teacher-sidebar .logout-btn:hover {
+  background: linear-gradient(135deg, #14b8a6 0%, #0891b2 100%);
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(20, 184, 166, 0.5);
+  border-color: rgba(45, 212, 191, 0.7);
+}
+
+.teacher-sidebar .logout-btn:hover::before {
+  left: 100%;
+}
+
+.teacher-sidebar .logout-btn:hover .logout-icon {
+  background: rgba(255, 255, 255, 0.3);
+  transform: scale(1.1);
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 1024px) {
+  .teacher-sidebar {
+    width: 90px;
+    padding: 20px 12px;
+  }
+  
+  .teacher-header {
+    padding: 15px 10px;
+    justify-content: center;
+  }
+  
+  .teacher-avatar {
+    width: 48px;
+    height: 48px;
+    min-width: 48px;
+    font-size: 24px;
+  }
+  
+  .teacher-info {
+    display: none;
+  }
+  
+  .teacher-sidebar nav {
+    gap: 6px;
+  }
+  
+  .teacher-sidebar .nav-item {
+    justify-content: center;
+    padding: 14px;
+  }
+  
+  .teacher-sidebar .nav-item .nav-icon {
+    width: 44px;
+    height: 44px;
+    min-width: 44px;
+    font-size: 22px;
+  }
+  
+  .teacher-sidebar .nav-item .nav-text {
+    display: none;
+  }
+  
+  .teacher-sidebar .nav-item:hover,
+  .teacher-sidebar .nav-item.active {
+    transform: none;
+  }
+  
+  .sidebar-footer {
+    padding-top: 15px;
+  }
+  
+  .teacher-sidebar .logout-btn {
+    padding: 14px;
+    justify-content: center;
+  }
+  
+  .teacher-sidebar .logout-icon {
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+  }
+  
+  .teacher-sidebar .logout-text {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .teacher-sidebar {
+    display: none;
+  }
+}

@@ -1,0 +1,429 @@
+/* Import CSS Variables */
+@import url('./Variables.css');
+
+/* ================= RESET & BASE ================= */
+.N-navbar * {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.N-navbar a {
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+/* ================= TOP BAR ================= */
+.N-top-bar {
+  background: var(--gradient-primary);
+  color: #ffffff;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  box-shadow: 0 2px 10px var(--shadow-secondary);
+}
+
+.N-marquee {
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.N-marquee p {
+  display: inline-block;
+  padding-left: 100%;
+  margin: 0;
+  line-height: 42px;
+  animation: marquee 20s linear infinite;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-100%); }
+}
+
+/* ================= MAIN NAVBAR ================= */
+.N-navbar {
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  z-index: 9999;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 60px;
+  box-shadow: 0 4px 30px var(--shadow-secondary);
+  border-bottom: 1px solid rgba(102, 126, 234, 0.1);
+}
+
+/* ================= LEFT - LOGO ================= */
+.N-nav-left {
+  display: flex;
+  align-items: center;
+}
+
+.N-logo-container {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.N-logo-img {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px var(--shadow-secondary);
+  padding: 4px;
+  background: white;
+  object-fit: contain;
+}
+
+.N-logo-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.N-college-name {
+  font-size: 20px;
+  font-weight: 800;
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1.2;
+}
+
+.N-college-subtitle {
+  font-size: 12px;
+  color: #6b7280;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+/* ================= RIGHT NAV ================= */
+.N-nav-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Nav Links */
+.N-nav-link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  border-radius: 12px;
+  color: var(--text-primary);
+  font-weight: 600;
+  font-size: 14px;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.N-nav-icon {
+  font-size: 16px;
+}
+
+.N-nav-link:hover {
+  background: var(--bg-light);
+  color: var(--color-primary);
+}
+
+.N-nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 4px;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: var(--gradient-primary);
+  transition: all 0.3s ease;
+  transform: translateX(-50%);
+}
+
+.N-nav-link:hover::after {
+  width: 30px;
+}
+
+/* ================= AUTH SECTION ================= */
+.N-auth-section {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-left: 10px;
+}
+
+.N-dashboard-link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  border-radius: 12px;
+  background: var(--gradient-primary);
+  color: white !important;
+  font-weight: 600;
+  font-size: 14px;
+  box-shadow: 0 4px 15px var(--shadow-primary);
+  transition: all 0.3s ease;
+}
+
+.N-dashboard-link:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px var(--shadow-primary);
+}
+
+/* ================= USER MENU ================= */
+.N-user-menu {
+  position: relative;
+}
+
+.N-user-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 16px;
+  border-radius: 12px;
+  background: var(--bg-light);
+  border: 2px solid var(--border-light);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.N-user-btn:hover {
+  border-color: var(--color-primary);
+  background: white;
+}
+
+.N-user-avatar {
+  font-size: 20px;
+}
+
+.N-user-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.N-dropdown-arrow {
+  font-size: 10px;
+  color: #9ca3af;
+  transition: transform 0.3s ease;
+}
+
+.N-user-menu:hover .N-dropdown-arrow {
+  transform: rotate(180deg);
+}
+
+/* User Dropdown */
+.N-user-dropdown {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  min-width: 200px;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 20px 50px var(--shadow-tertiary);
+  border: 1px solid var(--border-light);
+  padding: 8px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: all 0.3s ease;
+  z-index: 1000;
+}
+
+.N-user-menu:hover .N-user-dropdown {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.N-user-info {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border-light);
+  margin-bottom: 8px;
+}
+
+.N-user-role {
+  font-size: 12px;
+  color: var(--color-primary);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.N-dropdown-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 16px;
+  border-radius: 10px;
+  color: var(--text-primary);
+  font-weight: 500;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+.N-dropdown-link:hover {
+  background: var(--bg-light);
+  color: var(--color-primary);
+}
+
+.N-logout-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 16px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #fee2e2, #fecaca);
+  color: #dc2626 !important;
+  font-weight: 600;
+  font-size: 14px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 8px;
+}
+
+.N-logout-btn:hover {
+  background: linear-gradient(135deg, #fecaca, #fca5a5);
+  transform: translateX(3px);
+}
+
+/* ================= LOGIN SECTION ================= */
+.N-login-section {
+  position: relative;
+  margin-left: 10px;
+}
+
+.N-login-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 8px 20px;
+  border-radius: 14px;
+  background: var(--gradient-primary);
+  color: white !important;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: normal;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 15px var(--shadow-primary);
+  transition: all 0.3s ease;
+}
+
+.N-login-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px var(--shadow-primary);
+}
+
+.N-login-arrow {
+  font-size: 10px;
+  transition: transform 0.3s ease;
+}
+
+.N-login-section:hover .N-login-arrow {
+  transform: rotate(180deg);
+}
+
+/* Login Dropdown */
+.N-login-dropdown {
+  position: absolute;
+  top: calc(100% + 12px);
+  right: 0;
+  min-width: 220px;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 20px 50px var(--shadow-tertiary);
+  border: 1px solid var(--border-light);
+  padding: 10px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: all 0.3s ease;
+  z-index: 1000;
+}
+
+.N-login-section:hover .N-login-dropdown {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.N-login-dropdown .N-dropdown-link {
+  margin-bottom: 5px;
+}
+
+.N-login-dropdown .N-dropdown-link:last-child {
+  margin-bottom: 0;
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 1024px) {
+  .N-navbar {
+    padding: 12px 30px;
+  }
+  
+  .N-college-subtitle {
+    display: none;
+  }
+  
+  .N-nav-link {
+    padding: 10px 14px;
+    font-size: 13px;
+  }
+  
+  .N-nav-icon {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .N-navbar {
+    padding: 12px 20px;
+  }
+  
+  .N-logo-text {
+    display: none;
+  }
+  
+  .N-logo-img {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .N-nav-right {
+    gap: 5px;
+  }
+  
+  .N-nav-link {
+    padding: 8px 12px;
+    font-size: 13px;
+  }
+  
+  .N-dashboard-link {
+    padding: 8px 12px;
+  }
+  
+  .N-user-name {
+    display: none;
+  }
+  
+  .N-college-name {
+    font-size: 16px;
+  }
+}

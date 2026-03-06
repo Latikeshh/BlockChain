@@ -1,0 +1,162 @@
+/* Import CSS Variables */
+@import url('../../Variables.css');
+
+/* PAGE LAYOUT */
+.addstudent-container {
+  padding: 30px;
+  /* Teal/Cyan theme gradient */
+  background: linear-gradient(135deg, #ccfbf1 0%, #99f6e4 100%);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* HEADER */
+.addstudent-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.addstudent-header h2 {
+  font-weight: 700;
+  color: #0f766e;
+}
+
+.addstudent-header p {
+  color: #0d9488;
+  margin: 0;
+}
+
+/* ADD BUTTON */
+.btn-add-student {
+  background: linear-gradient(135deg, #0d9488 0%, #0891b2 50%, #6366f1 100%);
+  border: none;
+  color: white;
+  padding: 12px 22px;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.btn-add-student:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(13, 148, 136, 0.4);
+}
+
+/* TABLE CARD */
+.addstudent-table-card {
+  background: white;
+  border-radius: 14px;
+  box-shadow: 0 6px 25px rgba(0,0,0,0.08);
+  flex: 1;
+  overflow-y: auto;
+}
+
+/* TABLE */
+.addstudent-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.addstudent-table th {
+  background: linear-gradient(135deg, #0d9488 0%, #0891b2 100%);
+  color: white;
+  padding: 15px;
+  text-align: center;
+}
+
+.addstudent-table td {
+  padding: 14px;
+  text-align: center;
+  border-bottom: 1px solid #eee;
+}
+
+.addstudent-table tr:hover {
+  background: #f0fdfa;
+}
+
+.addstudent-empty {
+  padding: 30px;
+  color: #5eead4;
+  font-weight: 600;
+}
+
+/* MODAL */
+.addstudent-modal {
+  border-radius: 12px;
+  border: none;
+  padding: 10px;
+}
+
+.addstudent-form-input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
+  border-radius: 6px;
+  border: 1px solid #99f6e4;
+}
+
+.addstudent-form-input:focus {
+  outline: none;
+  border-color: #0d9488;
+  box-shadow: 0 0 6px rgba(13, 148, 136, 0.3);
+}
+
+/* BUTTONS */
+.btn-save-student {
+  background: linear-gradient(135deg, #0d9488 0%, #0891b2 100%);
+  color: white;
+  border: none;
+  padding: 10px 22px;
+  border-radius: 6px;
+  transition: 0.3s;
+}
+
+.btn-save-student:hover {
+  background: linear-gradient(135deg, #0891b2 0%, #0d9488 100%);
+  box-shadow: 0 4px 12px rgba(13, 148, 136, 0.4);
+}
+
+.btn-cancel-student {
+  background: #ccfbf1;
+  border: none;
+  padding: 10px 22px;
+  border-radius: 6px;
+  color: #0d9488;
+  transition: 0.3s;
+}
+
+.btn-cancel-student:hover {
+  background: #99f6e4;
+}
+
+.addstudent-table-card::-webkit-scrollbar {
+  width: 6px;
+}
+
+.addstudent-table-card::-webkit-scrollbar-thumb {
+  background: #99f6e4;
+  border-radius: 6px;
+}
+
+.addstudent-header-actions {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.addstudent-search-box {
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: 1px solid #99f6e4;
+  width: 260px;
+  transition: 0.3s;
+}
+
+.addstudent-search-box:focus {
+  outline: none;
+  border-color: #0d9488;
+  box-shadow: 0 0 6px rgba(13, 148, 136, 0.3);
+}

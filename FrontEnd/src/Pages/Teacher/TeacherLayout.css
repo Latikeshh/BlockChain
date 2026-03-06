@@ -1,0 +1,45 @@
+/* Import CSS Variables */
+@import url('../../Variables.css');
+
+/* ================= MAIN LAYOUT ================= */
+.teacher-layout {
+  background: linear-gradient(135deg, #ccfbf1 0%, #cffafe 100%);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+.teacher-layout-content {
+  display: flex;
+  flex: 1;
+  min-height: 100vh;
+}
+
+.teacher-main-content {
+  padding-left: 20px;
+  margin-left: 280px;
+  width: calc(100% - 280px);
+  min-height: 100vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 1024px) {
+  .teacher-main-content {
+    margin-left: 90px;
+    width: calc(100% - 90px);
+  }
+}
+
+@media (max-width: 768px) {
+  .teacher-main-content {
+    margin-left: 0;
+    width: 100%;
+    padding: 15px;
+    min-height: auto;
+    overflow-y: visible;
+  }
+}
