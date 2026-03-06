@@ -52,18 +52,18 @@ export default function TeacherForgotPassword() {
             <p style={{ fontSize: "14px", color: "#666", marginBottom: "20px" }}>
               Enter your registered email address to request a password reset. Admin will review and reset your password.
             </p>
-            
+
             <input
               type="email"
               placeholder="Email Address"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
-            
+
             <button type="submit" className="tfp-login-btn" disabled={loading}>
               {loading ? "Sending..." : "Submit Request"}
             </button>
-            
+
             <Link to="/teacher/login" style={{ marginTop: "15px", display: "block" }}>
               Back to Login
             </Link>
@@ -72,8 +72,8 @@ export default function TeacherForgotPassword() {
           <div className="tfp-success-card">
             <div className="tfp-success-icon-container">
               <svg className="tfp-success-icon" viewBox="0 0 52 52">
-                <circle className="tfp-success-icon-circle" cx="26" cy="26" r="25" fill="none"/>
-                <path className="tfp-success-icon-check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+                <circle className="tfp-success-icon-circle" cx="26" cy="26" r="25" fill="none" />
+                <path className="tfp-success-icon-check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8" />
               </svg>
             </div>
             <h2 className="tfp-success-title">Request Submitted!</h2>
@@ -89,10 +89,10 @@ export default function TeacherForgotPassword() {
             <p className="tfp-success-note">
               Admin will review your request and reset your password.
             </p>
-            
-            <button 
+
+            <button
               type="button"
-              className="tfp-login-btn" 
+              className="tfp-login-btn"
               onClick={() => {
                 setRequestSent(false);
                 setEmail("");
@@ -100,7 +100,7 @@ export default function TeacherForgotPassword() {
             >
               Submit Another Request
             </button>
-            
+
             <Link to="/teacher/login" className="tfp-back-link">
               Back to Login
             </Link>

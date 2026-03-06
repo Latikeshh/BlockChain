@@ -37,8 +37,8 @@ export default function VerifiedStudents() {
 
   /* CHECK IF STUDENT HAS ALL 6 SEMS */
   const hasAllSems = (student) => {
-    return student.sem1 && student.sem2 && student.sem3 && 
-           student.sem4 && student.sem5 && student.sem6;
+    return student.sem1 && student.sem2 && student.sem3 &&
+      student.sem4 && student.sem5 && student.sem6;
   };
 
   /* HANDLE STORE TO BLOCKCHAIN */
@@ -65,10 +65,10 @@ export default function VerifiedStudents() {
           if (res.ok) {
             setStoredStudents([...storedStudents, studentFormId]);
             dialog.success("Success", "Student data stored in blockchain successfully!");
-            
+
             // Remove the stored student from the local list
             setStudents(students.filter(s => s._id !== studentFormId));
-            
+
             setShowInfoModal(false);
             setSelectedStudent(null);
           } else {
@@ -107,7 +107,7 @@ export default function VerifiedStudents() {
           // Student is stored in blockchain, use blockchain data
           studentData = blockData.student;
           isFromBlockchain = true;
-          
+
           // Track that this student is stored in blockchain
           if (!storedStudents.includes(student._id)) {
             setStoredStudents([...storedStudents, student._id]);
@@ -356,20 +356,20 @@ export default function VerifiedStudents() {
                     variant="success"
                     disabled={storingBlock}
                   >
-                    {storingBlock ? "Storing..." : "Store to Blockchain"}
+                    {storingBlock ? "Storing..." : "Secure"}
                   </Button>
                   <p className="store-block-note">Click to store student data in blockchain for secure verification.</p>
                 </div>
               )}
 
-              {storedStudents.includes(selectedStudent._id) && (
+              {/* {storedStudents.includes(selectedStudent._id) && (
                 <div className="stored-indicator mt-3">
                   <span className="badge badge-success">✓ Stored in Blockchain</span>
                 </div>
-              )}
+              )} */}
 
               {/* Data Source Indicator */}
-              {selectedStudent.isFromBlockchain ? (
+              {storedStudents.includes(selectedStudent._id) && selectedStudent.isFromBlockchain ? (
                 <div className="stored-indicator mt-2">
                   <span className="badge badge-success">✓ Data from Blockchain</span>
                 </div>

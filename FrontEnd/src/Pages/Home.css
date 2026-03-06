@@ -31,8 +31,13 @@ body {
 }
 
 @keyframes slowZoom {
-  0% { transform: scale(1); }
-  100% { transform: scale(1.1); }
+  0% {
+    transform: scale(1);
+  }
+
+  100% {
+    transform: scale(1.1);
+  }
 }
 
 .hero-overlay {
@@ -155,8 +160,13 @@ body {
 }
 
 @keyframes gradientMove {
-  0% { background-position: 0% 50%; }
-  100% { background-position: 200% 50%; }
+  0% {
+    background-position: 0% 50%;
+  }
+
+  100% {
+    background-position: 200% 50%;
+  }
 }
 
 .features h2 {
@@ -268,8 +278,17 @@ body {
 }
 
 @keyframes pulse {
-  0%, 100% { transform: scale(1); opacity: 0.5; }
-  50% { transform: scale(1.1); opacity: 0.8; }
+
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.5;
+  }
+
+  50% {
+    transform: scale(1.1);
+    opacity: 0.8;
+  }
 }
 
 .stat-item {
@@ -391,11 +410,11 @@ body {
   .hero-content h1 {
     font-size: 44px;
   }
-  
+
   .features {
     padding: 80px 40px;
   }
-  
+
   .stats {
     gap: 50px;
     padding: 60px 40px;
@@ -406,58 +425,58 @@ body {
   .hero-content {
     padding: 0 20px;
   }
-  
+
   .hero-content h1 {
     font-size: 32px;
   }
-  
+
   .hero-content h1 span {
     font-size: 28px;
   }
-  
+
   .hero-content p {
     font-size: 16px;
   }
-  
+
   .features {
     padding: 60px 20px;
   }
-  
+
   .features h2 {
     font-size: 28px;
   }
-  
+
   .feature-cards {
     grid-template-columns: 1fr;
     gap: 20px;
   }
-  
+
   .stats {
     padding: 50px 20px;
     gap: 30px;
   }
-  
+
   .stat-number {
     font-size: 36px;
   }
-  
+
   .stat-label {
     font-size: 12px;
   }
-  
+
   .cta-section {
     padding: 60px 20px;
   }
-  
+
   .cta-section h2 {
     font-size: 26px;
   }
-  
+
   .cta-buttons {
     flex-direction: column;
     align-items: center;
   }
-  
+
   .cta-btn {
     width: 100%;
     max-width: 280px;
