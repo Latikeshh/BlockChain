@@ -7,7 +7,9 @@
   background: linear-gradient(135deg, #ccfbf1 0%, #cffafe 100%);
   min-height: 100vh;
 }
-
+.teacher-chart-legend .option-s p {
+  color: white;
+}
 /* ================= HEADER SECTION ================= */
 .teacher-dashboard-header {
   background: linear-gradient(135deg, #0d9488 0%, #0891b2 50%, #6366f1 100%);
@@ -187,33 +189,50 @@
 /* ================= CHART ================= */
 .teacher-stats-chart {
   margin-bottom: 36px;
-  background: white;
-  border: 1px solid #e5e7eb;
-  border-radius: 16px;
-  padding: 22px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  background: linear-gradient(145deg, #ffffff 0%, #fafbfc 100%);
+  border: 1px solid #e2e8f0;
+  border-radius: 20px;
+  padding: 28px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+}
+
+.teacher-stats-chart .teacher-section-heading {
+  font-size: 20px;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 25px;
+  padding-bottom: 12px;
+  border-bottom: 3px solid #0d9488;
+  display: inline-block;
+  letter-spacing: -0.3px;
 }
 
 .teacher-chart-layout {
   display: flex;
   align-items: center;
-  gap: 28px;
+  gap: 32px;
   flex-wrap: wrap;
+  padding: 24px;
+  background: linear-gradient(135deg, #f0fdfa 0%, #ecfeff 50%, #f0f9ff 100%);
+  border-radius: 16px;
+  border: 1px solid #ccfbf1;
 }
 
 .teacher-donut-chart-wrap {
   position: relative;
-  width: 130px;
-  height: 130px;
+  width: 150px;
+  height: 150px;
+  flex-shrink: 0;
 }
 
 .teacher-donut-chart {
   transform: rotate(-90deg);
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.12));
 }
 
 .teacher-donut-track {
   fill: none;
-  stroke: #e2e8f0;
+  stroke: #cbd5e1;
   stroke-width: 14;
 }
 
@@ -226,10 +245,12 @@
 
 .teacher-donut-segment.teacher-verified {
   stroke: #10b981;
+  filter: drop-shadow(0 0 8px rgba(16, 185, 129, 0.5));
 }
 
 .teacher-donut-segment.teacher-pending {
   stroke: #f59e0b;
+  filter: drop-shadow(0 0 8px rgba(245, 158, 11, 0.5));
 }
 
 .teacher-donut-center {
@@ -239,92 +260,155 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  background: linear-gradient(145deg, #ffffff 0%, #f8fafc 100%);
+  border-radius: 50%;
+  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.05);
+  border: 2px solid #f1f5f9;
 }
 
 .teacher-donut-value {
-  font-size: 24px;
+  font-size: 32px;
   font-weight: 800;
-  color: #1f2937;
   line-height: 1;
+  background: linear-gradient(135deg, #0d9488 0%, #14b8a6 50%, #10b981 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .teacher-donut-label {
-  font-size: 12px;
-  color: #6b7280;
-  margin-top: 4px;
+  font-size: 11px;
+  color: #475569;
+  margin-top: 6px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
 .teacher-chart-breakdown {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 18px;
+  padding: 20px 24px;
+  background: linear-gradient(145deg, #ffffff 0%, #f8fafc 100%);
+  border-radius: 16px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+  border: 1px solid #e2e8f0;
+  min-width: 220px;
 }
 
 .teacher-breakdown-item {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 14px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  transition: all 0.25s ease;
+}
+
+.teacher-breakdown-item:hover {
+  background: linear-gradient(135deg, #f0fdfa 0%, #ecfeff 100%);
+  transform: translateX(6px);
+}
+
+.teacher-breakdown-item .teacher-legend-color {
+  width: 16px;
+  height: 16px;
+  border-radius: 5px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.teacher-breakdown-item .teacher-verified {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+}
+
+.teacher-breakdown-item .teacher-pending {
+  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
 }
 
 .teacher-breakdown-item strong {
   display: block;
-  font-size: 19px;
-  color: #1f2937;
+  font-size: 22px;
+  color: #0f172a;
   line-height: 1.1;
+  font-weight: 800;
 }
 
-.teacher-breakdown-item p {
-  margin: 2px 0 0;
-  color: #6b7280;
+.teacher-breakdown-item {
+  margin: 3px 0 0;
+  /* color: #64748b; */
   font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.2px;
 }
 
 .teacher-chart-legend {
-  margin-top: 14px;
+  margin-top: 24px;
   display: flex;
-  gap: 20px;
+  gap: 24px;
   flex-wrap: wrap;
+  padding: 20px 24px;
+  background: linear-gradient(145deg, #0d9488 0%, #0891b2 100%);
+  border-radius: 16px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  border: 1px solid #0d9488;
   font-size: 13px;
-  color: #334155;
+  color: #ffffff;
   font-weight: 600;
 }
 
 .teacher-chart-legend .teacher-legend-color {
   display: inline-block;
-  width: 12px;
-  height: 12px;
-  margin-right: 6px;
-  border-radius: 3px;
+  width: 14px;
+  height: 14px;
+  margin-right: 8px;
+  border-radius: 4px;
   vertical-align: middle;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 .teacher-chart-legend .teacher-verified {
-  background: #10b981;
+  background: linear-gradient(135deg, #34d399 0%, #10b981 100%);
 }
 
 .teacher-chart-legend .teacher-pending {
-  background: #f59e0b;
+  background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
 }
 
 .teacher-chart-legend .teacher-total {
-  background: #6366f1;
+  background: linear-gradient(135deg, #818cf8 0%, #6366f1 100%);
 }
 
 .teacher-chart-stat {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
+  padding: 12px 16px;
+  border-radius: 10px;
+  transition: all 0.25s ease;
+}
+
+.teacher-chart-stat:hover {
+  background: linear-gradient(135deg, #f0fdfa 0%, #ecfeff 100%);
+  transform: translateY(-3px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
 .teacher-chart-stat strong {
-  font-size: 18px;
-  color: #1f2937;
+  font-size: 20px;
+  color: #ffffff;
+  font-weight: 800;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
 }
 
 .teacher-chart-stat p {
   margin: 0;
   font-size: 12px;
-  color: #6b7280;
+  color: #f8fafc;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
 }
 
 /* ================= QUICK ACTIONS ================= */

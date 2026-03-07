@@ -37,8 +37,19 @@ export default function VerifiedStudents() {
 
   /* CHECK IF STUDENT HAS ALL 6 SEMS */
   const hasAllSems = (student) => {
-    return student.sem1 && student.sem2 && student.sem3 &&
-      student.sem4 && student.sem5 && student.sem6;
+    const sems = [
+      student.sem1,
+      student.sem2,
+      student.sem3,
+      student.sem4,
+      student.sem5,
+      student.sem6,
+    ];
+
+    return sems.every((sem) => {
+      const value = Number(sem);
+      return sem !== undefined && sem !== null && sem !== "" && !isNaN(value) && value >= 10;
+    });
   };
 
   /* HANDLE STORE TO BLOCKCHAIN */
@@ -243,7 +254,6 @@ export default function VerifiedStudents() {
                   </div>
                 </div>
               )}
-
               {/* Basic Information */}
               <div className="section-card modal-section">
                 <h5 className="section-title">Basic Information</h5>
@@ -352,7 +362,16 @@ export default function VerifiedStudents() {
                 <div className="store-block-action mt-3">
                   <Button
                     className="btn-store-block"
-                    onClick={() => handleStoreToBlock(selectedStudent._id)}
+                    onClick={() => {
+                      if (!hasAllSems(selectedStudent)) {
+                        dialog.error(
+                          "Invalid Semester Data",
+                          "All 6 semester marks must be filled with valid numeric values"
+                        );
+                        return;
+                      }
+                      handleStoreToBlock(selectedStudent._id);
+                    }}
                     variant="success"
                     disabled={storingBlock}
                   >
@@ -362,16 +381,10 @@ export default function VerifiedStudents() {
                 </div>
               )}
 
-              {/* {storedStudents.includes(selectedStudent._id) && (
-                <div className="stored-indicator mt-3">
-                  <span className="badge badge-success">✓ Stored in Blockchain</span>
-                </div>
-              )} */}
-
               {/* Data Source Indicator */}
               {storedStudents.includes(selectedStudent._id) && selectedStudent.isFromBlockchain ? (
                 <div className="stored-indicator mt-2">
-                  <span className="badge badge-success">✓ Data from Blockchain</span>
+                  <span className="badge badge-success">✓ Data is Secured</span>
                 </div>
               ) : (
                 <div className="stored-indicator mt-2">

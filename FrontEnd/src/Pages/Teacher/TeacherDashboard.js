@@ -259,21 +259,21 @@ export default function TeacherDashboard() {
                 <span className="teacher-legend-color teacher-total" />
                 <div>
                   <strong>{stats.totalStudents}</strong>
-                  <p>Total Students</p>
+                  <p className="option-s">Total Students</p>
                 </div>
               </div>
               <div className="teacher-chart-stat teacher-verified">
                 <span className="teacher-legend-color teacher-verified" />
                 <div>
                   <strong>{stats.verifiedStudents}</strong>
-                  <p>Verified</p>
+                <p className="option-s">Verified</p>
                 </div>
               </div>
               <div className="teacher-chart-stat teacher-pending">
                 <span className="teacher-legend-color teacher-pending" />
                 <div>
                   <strong>{stats.pendingStudents}</strong>
-                  <p>Pending</p>
+                  <p className="option-s">Pending</p>
                 </div>
               </div>
             </div>
